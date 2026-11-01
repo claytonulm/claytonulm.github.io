@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clayton Ulm</title>
+<meta name="description" content="Clayton Ulm, MSPH. Doctoral student in Health Behavior at UNC Chapel Hill and data analyst at the Stanford Food Policy Lab. A systems science researcher studying health-producing systems.">
+<meta property="og:title" content="Clayton Ulm">
+<meta property="og:description" content="A systems science researcher studying health-producing systems.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%231A1A1A'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-weight='700' font-size='24' fill='%23ffffff' text-anchor='middle'%3ECU%3C/text%3E%3C/svg%3E">
+<style>
+/* Theme: Clayton's simple visuals. White page, near-black ink, gray for
+   everything secondary, thin gray connectors, Arial, no shadows or tints.
+   Color carries no meaning here, so the page stays monochrome. */
+:root {
+  --ink: #1A1A1A;
+  --soft: #757575;
+  --faint: #9E9E9E;
+  --connector: #6E6E6E;
+  --lane: #B0B0B0;
+  --rule: #E0E0E0;
+  --node: #BDBDBD;
+  --font: Arial, "Liberation Sans", Helvetica, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: #FFFFFF; color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.6; }
+a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--faint); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--ink); }
+a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+img { max-width: 100%; display: block; }
+.wrap { max-width: 50rem; margin: 0 auto; padding: 0 1.25rem; }
+
+/* Top bar */
+.top { border-bottom: 1px solid var(--rule); }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .4rem 1.5rem; padding-top: .9rem; padding-bottom: .9rem; }
+.mark { font-weight: 700; text-decoration: none; }
+.top nav { display: flex; flex-wrap: wrap; gap: .2rem 1.1rem; font-size: .92rem; }
+.top nav a { color: var(--soft); text-decoration: none; }
+.top nav a:hover { color: var(--ink); }
+
+/* Intro */
+.intro { display: grid; grid-template-columns: 1fr 10.5rem; gap: 2.25rem; align-items: start; padding: 2.75rem 0 2rem; }
+h1 { font-size: 2.3rem; line-height: 1.15; margin: 0 0 .35rem; font-weight: 700; }
+.role { color: var(--soft); margin: 0 0 1.2rem; font-size: .97rem; }
+.thesis { font-size: 1.28rem; font-weight: 700; line-height: 1.4; margin: 0 0 .8rem; }
+.intro p { max-width: 65ch; }
+.links { display: flex; flex-wrap: wrap; gap: .3rem 1.25rem; list-style: none; padding: 0; margin: 1.1rem 0 0; font-size: .95rem; }
+.photo { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 6px; }
+
+/* Numbered anchors: dark filled circles, white bold numbers */
+.num { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--ink); color: #FFFFFF; font-weight: 700; font-size: .85rem; flex: none; }
+.num.mini { width: 1.3rem; height: 1.3rem; font-size: .72rem; }
+
+/* The loop */
+.loop { margin: .5rem 0 0; padding: 0; }
+.chain { position: relative; list-style: none; margin: 0; padding: 0 0 3.6rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.6rem; }
+.chain > li { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: .45rem; }
+.node { border: 1.5px solid var(--ink); border-radius: 9px; padding: .55rem .6rem; width: 100%; font-weight: 700; font-size: .95rem; line-height: 1.25; min-height: 3.6rem; display: grid; place-items: center; background: #FFFFFF; }
+.sub { font-size: .8rem; color: var(--soft); line-height: 1.35; }
+.arr { position: absolute; top: 3.15rem; right: -2.6rem; width: 2.6rem; height: 1rem; color: var(--connector); }
+.arr svg { width: 100%; height: 100%; overflow: visible; }
+.arr .pol { position: absolute; right: .3rem; top: -1.15rem; font-size: .85rem; font-weight: 700; color: var(--soft); }
+.chain > li.return {
+  position: absolute; bottom: .9rem; display: block;
+  left: calc((100% - 3 * 2.6rem) / 8); right: calc((100% - 3 * 2.6rem) / 8);
+  height: 1.6rem; border: 1.5px dashed var(--lane); border-top: none; border-radius: 0 0 9px 9px;
+}
+.chain > li.return::before { content: ""; position: absolute; left: -6.5px; top: -8px; border: 6px solid transparent; border-bottom: 8px solid var(--lane); border-top: none; }
+.return > span { position: absolute; left: 50%; bottom: -.72rem; transform: translateX(-50%); background: #FFFFFF; padding: 0 .55rem; white-space: nowrap; font-size: .82rem; }
+.loopid { display: inline-grid; place-items: center; width: 1.3rem; height: 1.3rem; border: 1.5px solid var(--ink); border-radius: 50%; font-size: .7rem; font-weight: 700; margin-right: .35rem; vertical-align: -.15rem; }
+.loop-mobile { display: none; font-size: .88rem; margin: 1rem 0 0; }
+.foot { font-size: .8rem; color: var(--faint); margin: .5rem 0 0; }
+
+/* Sections */
+section { padding: 2rem 0 .25rem; }
+h2 { font-size: .78rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--faint); margin: 0 0 1.1rem; padding-top: 1.1rem; border-top: 1px solid var(--rule); }
+h3 { font-size: 1.08rem; font-weight: 700; line-height: 1.3; margin: 0; }
+
+.area { display: grid; gap: .45rem; padding: 0 0 1.6rem; }
+.tag { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; font-size: .85rem; color: var(--soft); margin: 0; }
+.tag .to { color: var(--connector); }
+.area p { margin: 0; max-width: 68ch; }
+.area ul { margin: .2rem 0 0; padding-left: 1.1rem; font-size: .95rem; }
+
+/* Publications */
+.pubs { list-style: none; margin: 0; padding: 0; }
+.pub { display: grid; grid-template-columns: 3.25rem 1fr; gap: 0 1rem; padding: .95rem 0; border-bottom: 1px solid var(--rule); }
+.pub:first-child { padding-top: 0; }
+.pub:last-child { border-bottom: none; }
+.yr { color: var(--soft); font-size: .9rem; font-variant-numeric: tabular-nums; padding-top: .1rem; }
+.pub .title { font-weight: 700; }
+.pub .title a { text-decoration: none; }
+.pub .title a:hover { text-decoration: underline; }
+.auth, .venue { font-size: .9rem; color: var(--soft); }
+.auth strong { color: var(--ink); }
+.take { margin: .3rem 0 0; font-size: .95rem; }
+.more { display: flex; gap: 1rem; font-size: .88rem; margin-top: .25rem; }
+.chip { display: inline-block; font-size: .74rem; font-weight: 700; color: var(--soft); border: 1px solid var(--node); border-radius: 9px; padding: 0 .5rem; margin-left: .4rem; vertical-align: .1em; }
+
+/* Rows: news, tools, talks, experience */
+.rows { list-style: none; margin: 0; padding: 0; }
+.rows > li { display: grid; grid-template-columns: 7.25rem 1fr; gap: 0 1rem; padding: .7rem 0; border-bottom: 1px solid var(--rule); font-size: .95rem; }
+.rows > li:last-child { border-bottom: none; }
+.when { color: var(--soft); font-size: .9rem; font-variant-numeric: tabular-nums; }
+.sm { display: block; color: var(--soft); font-size: .87rem; }
+.rows .file { font-size: .87rem; }
+h3.group { font-size: .95rem; margin: 1.4rem 0 .2rem; }
+h3.group:first-of-type { margin-top: 0; }
+.note { font-size: .92rem; color: var(--soft); margin: .9rem 0 0; }
+footer { margin-top: 2.25rem; border-top: 1px solid var(--rule); padding: 1.1rem 0 2.5rem; font-size: .82rem; color: var(--faint); }
+
+@media (max-width: 640px) {
+  .intro { grid-template-columns: 1fr; gap: 1.2rem; padding-top: 2rem; }
+  .photo { width: 8.5rem; order: -1; }
+  .chain { grid-template-columns: 1fr; gap: 1.9rem; padding-bottom: 0; }
+  .arr { top: auto; bottom: -1.75rem; right: auto; left: 50%; width: 1.5rem; transform: translateX(-50%) rotate(90deg); }
+  .arr .pol { display: none; }
+  .chain > li.return { display: none; }
+  .loop-mobile { display: block; }
+  .pub, .rows > li { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top">Clayton Ulm</a>
+    <nav aria-label="Sections">
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#news">In the news</a>
+      <a href="#talks">Talks</a>
+      <a href="#tools">Tools</a>
+      <a href="#experience">Experience</a>
+      <a href="cv.pdf">CV</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+
+  <!-- ============ INTRO ============ -->
+  <div class="intro">
+    <div>
+      <h1>Clayton Ulm, MSPH</h1>
+      <p class="role">Doctoral Student, Health Behavior, UNC Gillings School of Global Public Health<br>Data Analyst, Stanford Food Policy Lab, Stanford School of Medicine</p>
+      <p class="thesis">I am a systems science researcher studying health-producing systems.</p>
+      <p>I am interested in how health-producing systems, such as pharmaceutical companies, influence population health behavior and human biological aging. I work comfortably across disciplinary cultures and institutions. I am a graduate research assistant in the Department of Health Behavior, a data analyst at the Stanford Food Policy Lab at Stanford School of Medicine, and now a biosocial trainee at the Carolina Population Center, Biosocial Training Program.</p>
+      <ul class="links">
+        <li><a href="mailto:rulm@unc.edu">rulm@unc.edu</a></li>
+        <li><a href="cv.pdf">CV (PDF)</a></li>
+        <li><a href="https://scholar.google.com/citations?user=p_XSiJYAAAAJ">Google Scholar</a></li>
+        <li><a href="https://github.com/rulm0000">GitHub</a></li>
+      </ul>
+    </div>
+    <img class="photo" src="photo.jpg" alt="Clayton Ulm" width="560" height="560">
+  </div>
+
+  <!-- ============ THE LOOP ============ -->
+  <figure class="loop" aria-label="Health-producing systems affect health behavior, which affects organ-specific aging, which affects cognitive function in midlife. Harm generates public support that drives tobacco control.">
+    <ol class="chain">
+      <li>
+        <span class="num">1</span>
+        <span class="node">Health-producing systems</span>
+        <span class="sub">pharmaceutical, tobacco, and food companies</span>
+        <span class="arr" aria-hidden="true"><span class="pol">+</span><svg viewBox="0 0 44 16"><line x1="4" y1="8" x2="38" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M33 3.5 L40 8 L33 12.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </li>
+      <li>
+        <span class="num">2</span>
+        <span class="node">Health behavior</span>
+        <span class="sub">sugary drinks, fast food, alcohol, nicotine, cannabis</span>
+        <span class="arr" aria-hidden="true"><span class="pol">+</span><svg viewBox="0 0 44 16"><line x1="4" y1="8" x2="38" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M33 3.5 L40 8 L33 12.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </li>
+      <li>
+        <span class="num">3</span>
+        <span class="node">Organ-specific aging</span>
+        <span class="sub">e.g., heart and liver</span>
+        <span class="arr" aria-hidden="true"><span class="pol">+</span><svg viewBox="0 0 44 16"><line x1="4" y1="8" x2="38" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M33 3.5 L40 8 L33 12.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </li>
+      <li>
+        <span class="num">4</span>
+        <span class="node">Cognitive function in midlife</span>
+        <span class="sub">decades before Alzheimer's is typically diagnosed</span>
+      </li>
+      <li class="return" aria-hidden="true"><span><span class="loopid">B</span>Harm generates public support that drives tobacco control</span></li>
+    </ol>
+    <p class="loop-mobile"><span class="loopid">B</span>Harm generates public support that drives tobacco control</p>
+    <p class="foot">My research as a causal loop diagram.</p>
+  </figure>
+
+  <!-- ============ RESEARCH ============ -->
+  <section id="research">
+    <h2>Research</h2>
+
+    <div class="area">
+      <h3>Organ-specific health and cognitive function</h3>
+      <p class="tag"><span class="num mini">2</span><span class="to">→</span><span class="num mini">3</span><span class="to">→</span><span class="num mini">4</span> Dissertation, Carolina Population Center</p>
+      <p>My dissertation is a pivot from my previous experience to study the aging of biological systems that precede the development of Alzheimer's disease and dementia. It uses data from the National Longitudinal Study of Adolescent to Adult Health (Add Health) to examine how glucagon-like peptide-1 receptor agonists (GLP-1 RAs) fundamentally shape demand for sugary drinks, fast food, alcohol, nicotine, and cannabis, and how this, in turn, can slow biological aging. As part of this work, I use machine learning methods such as elastic-net regression to train scores for seven organ-specific aging domains (e.g., heart and liver). The overall goal of this work is to inform clinical prevention and drug-development research focused on preventing Alzheimer's early, decades before it is typically diagnosed.</p>
+    </div>
+
+    <div class="area">
+      <h3>Tobacco policy and systems science</h3>
+      <p class="tag"><span class="num mini">1</span><span class="to">→</span><span class="num mini">2</span> UNC Tobacco Center of Regulatory Science</p>
+      <p>In my work on tobacco, I identified the for-profit feedback loop that drives tobacco product development and marketing and, in turn, demand for these products. In addition, because these products harm health, I showed how this harm generates a public-support-driven counteracting loop that drives tobacco control. I had the opportunity to present this work on a panel at the 2025 National Conference on Tobacco or Health.</p>
+      <ul>
+        <li><a href="https://www.popsim.org/menthol">Menthol cigarette ban causal loop diagrams</a></li>
+        <li><a href="talks/2025-nctoh-panel-slides.pdf">Panel slides, National Conference on Tobacco or Health 2025</a></li>
+      </ul>
+    </div>
+
+    <div class="area">
+      <h3>Food policy and social media</h3>
+      <p class="tag"><span class="num mini">1</span><span class="to">→</span><span class="num mini">2</span> Stanford Food Policy Lab</p>
+      <p>As a data analyst at the Stanford School of Medicine, I have developed my training in clinical trials, mixed-effects modeling, and difference-in-differences modeling. I do mixed-effect analyses and data visualization for research on food policy and social media warning labels.</p>
+    </div>
+  </section>
+
+  <!-- ============ PUBLICATIONS ============
+       To add a paper: copy one <li class="pub"> block and edit it. -->
+  <section id="publications">
+    <h2>Publications</h2>
+    <ol class="pubs">
+
+      <li class="pub">
+        <div class="yr">2026</div>
+        <div>
+          <div class="title"><a href="https://doi.org/10.64898/2026.08.06.26359850">State-level trends in urban-rural differences in cigarette smoking in the United States</a><span class="chip">Preprint</span></div>
+          <div class="auth"><strong>Ulm C</strong>, Golden SD, Hill F, Wiesen CA, Mills SD</div>
+          <div class="venue"><em>medRxiv</em></div>
+          <p class="take">My master's thesis examines rural-urban disparities in smoking habits within the United States. The code runs the full analysis, from the raw CDC files to every table and figure in the paper, with one command.</p>
+          <div class="more"><a href="https://doi.org/10.64898/2026.08.06.26359850">Preprint</a><a href="https://github.com/rulm0000/urban-rural-smoking-brfss">Code</a></div>
+        </div>
+      </li>
+
+      <li class="pub">
+        <div class="yr">2026</div>
+        <div>
+          <div class="title"><a href="https://doi.org/10.1001/jamahealthforum.2026.3014">Designing social media health warnings for teenagers and young adults: a randomized clinical trial</a></div>
+          <div class="auth">Grummon AH, <strong>Ulm C</strong>, Zeitlin AB, Hall MG, Falbe J, Kline NA, Robinson TN</div>
+          <div class="venue"><em>JAMA Health Forum</em></div>
+          <p class="take">I wrote the code for this clinical trial on social media warning labels and perceived message effectiveness among teens and young adults.</p>
+          <div class="more"><a href="https://doi.org/10.1001/jamahealthforum.2026.3014">Paper</a><a href="https://github.com/rulm0000/social_media_wl">Code</a><a href="#news">In the news</a></div>
+        </div>
+      </li>
+
+      <li class="pub">
+        <div class="yr">2026</div>
+        <div>
+          <div class="title"><a href="https://doi.org/10.1371/journal.pmed.1004847">Effect of food swap recommendations on the healthfulness and carbon footprint of grocery purchases in a naturalistic online store: a randomized parallel trial</a></div>
+          <div class="auth">Grummon AH, O'Sullivan K, Zeitlin AB, Taillie LS, Lee CJY, Walker AJ, Tiefenbeck V, Fleisch E, <strong>Ulm C</strong>, Robinson TN</div>
+          <div class="venue"><em>PLOS Medicine</em></div>
+          <p class="take">I wrote code to analyze this food swaps trial aimed at improving the healthfulness and carbon footprint of online grocery purchases.</p>
+          <div class="more"><a href="https://doi.org/10.1371/journal.pmed.1004847">Paper</a><a href="https://github.com/rulm0000/swaps">Code</a><a href="#news">In the news</a></div>
+        </div>
+      </li>
+
+      <li class="pub">
+        <div class="yr">2026</div>
+        <div>
+          <div class="title"><a href="https://doi.org/10.1186/s13034-026-01079-4">Association between unhealthy food consumption and mental health outcomes in children and adolescents: an umbrella review</a></div>
+          <div class="auth"><strong>Ulm C</strong>, Hill F, Mills SD, Chelius C, Hecht EM</div>
+          <div class="venue"><em>Child and Adolescent Psychiatry and Mental Health</em></div>
+          <p class="take">I led this umbrella review, which synthesized 15 pooled estimates covering more than 2.5 million children and adolescents.</p>
+          <div class="more"><a href="https://doi.org/10.1186/s13034-026-01079-4">Paper</a><a href="https://github.com/rulm0000/unhealthy-food-umbrella">Code</a></div>
+        </div>
+      </li>
+
+      <li class="pub">
+        <div class="yr">2026</div>
+        <div>
+          <div class="title"><a href="https://doi.org/10.1093/ntr/ntag014">The public health impacts of flavored cigar bans: a systematic review and meta-analysis</a></div>
+          <div class="auth">Hill F, Hassmiller Lich K, Wilson M, <strong>Ulm C</strong>, Golden SD, Ribisl KM, Baldwin-SoRelle C, Mills SD</div>
+          <div class="venue"><em>Nicotine &amp; Tobacco Research</em></div>
+          <p class="take">I ran a random-effects meta-analysis for this systematic review of flavored cigar bans that pooled data on participants' hypothesized behavior under such a ban.</p>
+          <div class="more"><a href="https://doi.org/10.1093/ntr/ntag014">Paper</a></div>
+        </div>
+      </li>
+
+      <li class="pub">
+        <div class="yr">2026</div>
+        <div>
+          <div class="title"><a href="https://doi.org/10.1177/10731911261444953">Effects of ecological momentary assessment prompting schedule on affect measurement variability and associations with next-day health behaviors</a></div>
+          <div class="auth">Langford JS, Hébert ET, Jones DR, Tonkin SS, Barker BA, <strong>Ulm C</strong>, Shi D, Becerra JA, Businelle MS</div>
+          <div class="venue"><em>Assessment</em></div>
+          <div class="more"><a href="https://doi.org/10.1177/10731911261444953">Paper</a></div>
+        </div>
+      </li>
+
+      <li class="pub">
+        <div class="yr">2024</div>
+        <div>
+          <div class="title"><a href="https://doi.org/10.2196/56003">Smartphone-based survey and message compliance in adults initially unready to quit smoking: secondary analysis of a randomized controlled trial</a></div>
+          <div class="auth"><strong>Ulm C</strong>, Chen S, Fleshman B, Benson L, Kendzor DE, Frank-Pearce S, Neil JM, Vidrine D, De La Torre I, Businelle MS</div>
+          <div class="venue"><em>JMIR Formative Research</em></div>
+          <p class="take">Using data from a randomized controlled trial of a smartphone-based cessation intervention, I led an analysis identifying factors associated with survey and messaging engagement over the study period. I used mixed-effects modeling to show that age, sex, employment, and education significantly relate to how fast someone quits engaging with the cessation intervention.</p>
+          <div class="more"><a href="https://doi.org/10.2196/56003">Paper</a></div>
+        </div>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ============ IN THE NEWS ============ -->
+  <section id="news">
+    <h2>In the news</h2>
+    <h3 class="group">Social media health warnings, <em>JAMA Health Forum</em></h3>
+    <ul class="rows">
+      <li><span class="when">Sep 2026</span><span><a href="https://news.stanford.edu/stories/2026/09/warning-labels-social-media-use">Warning labels could curb young people's social media use</a><span class="sm">Stanford Report</span></span></li>
+      <li><span class="when">Sep 2026</span><span><a href="https://www.healthday.com/healthpro-news/mental-health/social-media-warnings-could-discourage-use-among-teens-young-adults">Social media warnings could discourage use among teens, young adults</a><span class="sm">HealthDay</span></span></li>
+      <li><span class="when">Sep 2026</span><span><a href="https://www.euronews.com/health/2026/09/05/health-warnings-could-reduce-youths-hours-spent-on-social-media">Health warnings could reduce youth's hours spent on social media</a><span class="sm">Euronews</span></span></li>
+      <li><span class="when">Sep 2026</span><span><a href="https://www.news-medical.net/news/20260904/Mental-health-warning-labels-prompt-young-people-to-limit-screens.aspx">Mental health warning labels prompt young people to limit screens</a><span class="sm">News-Medical</span></span></li>
+      <li><span class="when">Sep 2026</span><span><a href="https://www.emarketer.com/content/social-media-health-warning-labels-discourage-young-consumers-wanting-use-platforms">Social media health warning labels discourage young consumers from wanting to use the platforms</a><span class="sm">EMARKETER</span></span></li>
+    </ul>
+    <h3 class="group">Food swaps trial, <em>PLOS Medicine</em></h3>
+    <ul class="rows">
+      <li><span class="when">Sep 2026</span><span><a href="https://www.ingredientsnetwork.com/climate-friendly-shopping-tips-led-to-more-news129980.html">Climate-friendly shopping tips led to more sustainable and healthier purchases</a><span class="sm">Ingredients Network</span></span></li>
+    </ul>
+  </section>
+
+  <!-- ============ TALKS ============ -->
+  <section id="talks">
+    <h2>Talks and posters</h2>
+    <ul class="rows">
+      <li><span class="when">Aug 2025</span><span>Systems Literature Analysis Engine: automating the connection of scientific evidence to inform causal loop diagrams<span class="sm">Work-in-progress presentation, International System Dynamics Conference, Boston, MA</span></span></li>
+      <li><span class="when">Aug 2025</span><span>Contextual factors influencing flavored tobacco ban effectiveness: an empirical evaluation of industry tactics and policy enforcement<span class="sm">Panel presentation, National Conference on Tobacco or Health, Chicago, IL</span><a class="file" href="talks/2025-nctoh-panel-slides.pdf">Slides</a></span></li>
+      <li><span class="when">Aug 2025</span><span>Improving the design and implementation of local and state policies that ban the sale of flavored tobacco products<span class="sm">Poster presentation, National Conference on Tobacco or Health, Chicago, IL</span><a class="file" href="talks/2025-nctoh-poster.pdf">Poster</a></span></li>
+      <li><span class="when">Mar 2025</span><span>State-level trends in urban-rural smoking disparities from 2018 to 2022<span class="sm">Poster presentation, Society for Research on Nicotine and Tobacco, New Orleans, LA</span></span></li>
+      <li><span class="when">Sep 2023</span><span>The interrelationships of unhealthy food consumption and morbidities in youth: an umbrella review<span class="sm">Poster presentation, North Carolina Public Health Association Conference, Concord, NC</span><a class="file" href="talks/2023-ncpha-poster.pdf">Poster</a></span></li>
+      <li><span class="when">May 2023</span><span>Barriers to survey completion in a cessation app for smokers unmotivated to quit: a qualitative study<span class="sm">Poster presentation, Colloquium on Qualitative Health Sciences Research in Oklahoma, Oklahoma City, OK</span><a class="file" href="talks/2023-qualitative-colloquium-poster.pdf">Poster</a></span></li>
+      <li><span class="when">Apr 2023</span><span>Private religiosity better predicts less hazardous drinking than public religiosity<span class="sm">Poster presentation, Society of Behavioral Medicine, Phoenix, AZ</span><a class="file" href="talks/2023-sbm-poster.pdf">Poster</a></span></li>
+      <li><span class="when">Mar 2023</span><span>Do smokers initially unmotivated to quit open smartphone messages that promote and support smoking cessation attempts?<span class="sm">Poster presentation, Annual Cancer Research Symposium, Oklahoma City, OK</span><a class="file" href="talks/2023-acrs-poster.pdf">Poster</a></span></li>
+      <li><span class="when">Apr 2022</span><span>Statistical numeracy and belief bias: a case of medical decision making<span class="sm">Poster presentation, Psychology Graduate Student Association, Norman, OK</span><a class="file" href="talks/2022-pgsa-poster.pdf">Poster</a></span></li>
+      <li><span class="when">Mar 2022</span><span>Relationship between sleep quality and readiness to change weight-related health behaviors in smokers unmotivated to quit<span class="sm">Poster presentation, Annual Cancer Research Symposium, Oklahoma City, OK</span><a class="file" href="talks/2022-acrs-poster.pdf">Poster</a></span></li>
+    </ul>
+  </section>
+
+  <!-- ============ TOOLS ============ -->
+  <section id="tools">
+    <h2>Tools and code</h2>
+    <ul class="rows">
+      <li><span class="when">Tool</span><span><a href="https://www.popsim.org/tools/crc-impact-model">Colorectal cancer screening calculator</a><span class="sm">I used meta-modeling to speed up outputs of a microsimulation model of colorectal cancer screening strategies. To make these decision tools available to the public, I built a publicly available colorectal cancer screening calculator.</span></span></li>
+      <li><span class="when">Tool</span><span><a href="https://www.popsim.org/menthol">Menthol cigarette ban causal loop diagrams</a><span class="sm">A publicly available tool that uses causal loop diagrams to represent feedback dynamics between ban implementation, industry substitution, and population cessation behavior. I contributed to the modeling architecture and the interactive interface design.</span></span></li>
+      <li><span class="when">Code</span><span><a href="https://github.com/rulm0000/opportunity-scout">Opportunity Scout</a><span class="sm">A weekly system that finds grants, industry funding, scholarships and awards, and jobs a doctoral student is actually eligible for, and keeps them in one tracker.</span></span></li>
+    </ul>
+    <p class="note">I aim to be able to defend every modeling choice I make and produce only transparent and reproducible results. See my code on <a href="https://github.com/rulm0000">GitHub</a>.</p>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <ul class="rows">
+      <li><span class="when">2026 – now</span><span>Pre-doctoral Trainee, Biosocial Training Program<span class="sm">Carolina Population Center, University of North Carolina at Chapel Hill. Mentors: Drs. Sarah Mills and Kenneth Bollen.</span></span></li>
+      <li><span class="when">2025 – now</span><span>Data Analyst, Stanford Food Policy Lab<span class="sm">Department of Health Policy, School of Medicine, Stanford University. Mixed-effect analyses and data visualization for research on food policy and social media warning labels.</span></span></li>
+      <li><span class="when">2023 – now</span><span>Graduate Research Assistant, Department of Health Behavior<span class="sm">Gillings School of Global Public Health, University of North Carolina at Chapel Hill. Causal loop diagrams, meta-analyses, and regression analyses on tobacco policy and health behaviors.</span></span></li>
+      <li><span class="when">2022 – 2023</span><span>Staff Research Assistant, Health Promotion Research Center<span class="sm">Stephenson Cancer Center, University of Oklahoma Health Sciences Center. Mixed-effect analyses of predictors of app engagement; participant recruitment and qualitative interviews.</span></span></li>
+      <li><span class="when">2020 – 2022</span><span>Research Assistant in three labs<span class="sm">Decision Analytics Lab; Ethical Choice Education Lab; Day Lab, Department of Psychology, University of Oklahoma. Structural equation modeling on statistical numeracy affecting medical decision-making.</span></span></li>
+    </ul>
+    <h3 class="group" style="margin-top:1.6rem">Education</h3>
+    <ul class="rows">
+      <li><span class="when">2025 – now</span><span>Ph.D. in Health Behavior<span class="sm">Gillings School of Global Public Health, University of North Carolina at Chapel Hill. Advisor: Dr. Sarah Mills.</span></span></li>
+      <li><span class="when">2025</span><span>MSPH in Health Behavior<span class="sm">"State-Level Trends in Urban-Rural Differences in Cigarette Smoking in the United States." University of North Carolina at Chapel Hill.</span></span></li>
+      <li><span class="when">2022</span><span>B.S. in Psychology, Summa Cum Laude<span class="sm">"Statistical numeracy and belief bias: A case of medical decision making." University of Oklahoma.</span></span></li>
+    </ul>
+    <p class="note">Peer reviewer for <em>Scientific Reports</em>, <em>Preventing Chronic Disease</em>, and the International System Dynamics Conference. Member, Society for Research on Nicotine and Tobacco.</p>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:rulm@unc.edu">rulm@unc.edu</a>. I am geo-flexible. I am available full-time from June through mid-August 2027 and expect to graduate as early as December 2027.</p>
+  </section>
+
+  <footer>Last updated November 2026.</footer>
+</main>
+
+</body>
+</html>
