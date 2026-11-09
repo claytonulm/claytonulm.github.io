@@ -98,6 +98,11 @@ table.lev th { font-size: .82rem; color: var(--soft); font-weight: 700; }
 .ladder { position: relative; }
 @media (min-width: 701px) { .rung:not(:last-child) .num::after { content: ""; position: absolute; left: 2.1rem; right: -0.6rem; top: .8rem; border-top: 1.5px solid var(--faint); } .rung { position: relative; } .rung .num { position: static; } }
 .charts { display: grid; gap: 1.6rem; margin: .8rem 0; }
+.ctab { border-collapse: collapse; font-size: .92rem; margin: .4rem 0 1rem; }
+.ctab th, .ctab td { text-align: left; padding: .25rem 1.4rem .25rem 0; border-bottom: 1px solid var(--rule); }
+.ctab th { font-weight: 600; }
+.ctab td:last-child { white-space: nowrap; }
+.ctab td.ind { padding-left: 1.1rem; color: var(--soft); }
 .chart h4 { margin: 0 0 .15rem; font-size: .98rem; } .chart .sub { color: var(--soft); font-size: .85rem; margin-bottom: .5rem; }
 .bar { display: grid; grid-template-columns: 13rem 1fr 3.4rem; gap: .6rem; align-items: center; font-size: .9rem; margin: .22rem 0; }
 .bar .track { height: .95rem; background: transparent; position: relative; }
@@ -168,8 +173,21 @@ footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding: 1.2rem 0 
   <div class="charts">
     <div class="chart" id="c1"></div>
     <div class="chart" id="c2"></div>
+    <div class="chart" id="c2b"></div>
     <div class="chart" id="c3"></div>
   </div>
+
+  <h2 id="compute">Compute and time</h2>
+  <p class="soft small">One NVIDIA RTX PRO 6000 GPU (96 GB) on UNC's Longleaf cluster, running Gemma 4 31B (open weights). No paid AI services.</p>
+  <table class="ctab">
+    <tr><th>Job</th><th>Time</th></tr>
+    <tr><td>GLP-1, 150 papers, papers to finished maps</td><td>about 7 h</td></tr>
+    <tr><td class="ind">Read each paper's results</td><td>1 h 40 min</td></tr>
+    <tr><td class="ind">Check each finding</td><td>1 h</td></tr>
+    <tr><td class="ind">Code study designs</td><td>16 min</td></tr>
+    <tr><td class="ind">Build the map, subsystems and intervention points</td><td>about 4 h</td></tr>
+    <tr><td>Menthol, 137 papers, build the map from extracted findings</td><td>2 h 43 min</td></tr>
+  </table>
 
   <h2 id="maps">Explore the maps</h2>
   <p>Pick a literature, then click any arrow to see its papers and every coded finding behind it in a sortable evidence table (paper, study design, cause and effect as coded, direction and the excerpt), click a construct for the variables it holds, or press <b>Walk through</b> to step through a subsystem one arrow at a time.</p>
@@ -205,7 +223,9 @@ footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding: 1.2rem 0 
   const CH = [
     { id: "c1", title: "1. Excerpt given", sub: "Same task as the human coders",
       rows: [["This model", 94.4, "ours"], ["Human coders (average)", 87.9, "human"], ["Jev classifier", 86.7, ""]] },
-    { id: "c2", int: true, title: "2. Excerpt removed", sub: "Same 25 hard pairs for everyone; the evidence must be found in the paper",
+    { id: "c2", title: "2. Excerpt removed", sub: "Pair and its paper, no excerpt; same 780 test links for every model",
+      rows: [["This model", 85.8, "ours"], ["Jev classifier", 80.1, ""], ["<a href=\"https://arxiv.org/abs/2610.07019\">Li 2026</a>, released model", 76.5, ""]] },
+    { id: "c2b", int: true, title: "Hard cases, excerpt removed", sub: "Same 25 hard pairs for everyone; the evidence must be found in the paper",
       rows: [["This model", 83, "ours"], ["Earlier pipeline (Jev, then Claude)", 70, ""], ["Human coders (average)", 40, "human"]] },
     { id: "c3", title: "Clinical trials", sub: "<a href=\"http://evidence-inference.ebm-nlp.com/\">Evidence Inference 2.0</a> test set, accuracy; doctors checked by a third doctor (<a href=\"https://arxiv.org/abs/2005.04177\">DeYoung et al. 2020</a>)",
       rows: [["This model", 95.2, "ours"], ["<a href=\"https://arxiv.org/abs/2610.07019\">Li 2026</a>, released model", 92.7, ""], ["Doctors", 90.0, "human"]] }
