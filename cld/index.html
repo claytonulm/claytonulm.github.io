@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From papers to causal loop diagrams | Clayton Ulm</title>
+<meta name="description" content="A literature-mapping tool that reads a body of research papers and builds evidence-backed causal loop diagrams, shown for menthol and flavored tobacco restrictions and for GLP-1 drugs, organ aging and regulation.">
+<meta property="og:title" content="From papers to causal loop diagrams">
+<meta property="og:description" content="Evidence-backed causal loop diagrams built from research literatures: menthol and flavored tobacco restrictions; GLP-1 drugs, organ aging and regulation.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%231A1A1A'/%3E%3Ctext x='32' y='41' font-family='Arial,sans-serif' font-weight='700' font-size='24' fill='%23ffffff' text-anchor='middle'%3ECU%3C/text%3E%3C/svg%3E">
+<style>
+:root {
+  --ink: #1A1A1A; --soft: #757575; --faint: #9E9E9E; --rule: #E0E0E0; --panel: #F5F5F5;
+  --blue: #2166AC; --red: #B2182B;
+  --font: Arial, "Liberation Sans", Helvetica, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: #FFFFFF; color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.6; }
+a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--faint); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--ink); }
+.wrap { max-width: 50rem; margin: 0 auto; padding: 0 1.25rem; }
+.wide { max-width: 78rem; margin: 0 auto; padding: 0 1.25rem; }
+.top { border-bottom: 1px solid var(--rule); }
+.top .wrap { display: flex; justify-content: space-between; align-items: baseline; padding-top: .9rem; padding-bottom: .9rem; gap: 1rem; flex-wrap: wrap; }
+.mark { font-weight: 700; text-decoration: none; }
+.top nav { display: flex; gap: 1.1rem; font-size: .92rem; flex-wrap: wrap; }
+.top nav a { color: var(--soft); text-decoration: none; }
+.top nav a:hover { color: var(--ink); }
+h1 { font-size: 2.1rem; line-height: 1.15; margin: 2.4rem 0 .6rem; }
+h2 { font-size: 1.35rem; margin: 2.6rem 0 .8rem; padding-top: 1.2rem; border-top: 1px solid var(--rule); }
+h3 { font-size: 1.05rem; margin: 1.4rem 0 .4rem; }
+.lede { font-size: 1.12rem; max-width: 65ch; }
+.soft { color: var(--soft); }
+.small { font-size: .9rem; }
+.num { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--ink); color: #FFF; font-weight: 700; font-size: .85rem; flex: none; }
+.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: .9rem; }
+.steps li { display: flex; gap: .8rem; align-items: flex-start; }
+.steps b { display: block; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1rem; margin: .6rem 0; }
+.stat { border-top: 2px solid var(--ink); padding-top: .5rem; }
+.stat .v { font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+.stat .l { font-size: .9rem; color: var(--soft); }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1rem; margin-top: .8rem; }
+.card { border: 1px solid var(--rule); border-radius: 8px; padding: 1rem 1.1rem; cursor: pointer; background: #FFF; text-align: left; font: inherit; color: inherit; }
+.card:hover, .card.on { border-color: var(--ink); }
+.card .t { font-weight: 700; font-size: 1.05rem; }
+.card .d { color: var(--soft); font-size: .92rem; margin-top: .3rem; }
+/* viewer */
+#viewer { margin-top: 1.4rem; }
+.tabs { display: flex; flex-wrap: wrap; gap: .4rem; margin: .8rem 0; }
+.tabs button { font: inherit; font-size: .9rem; padding: .35rem .8rem; border: 1px solid var(--rule); border-radius: 999px; background: #FFF; cursor: pointer; color: var(--ink); }
+.tabs button.on { background: var(--ink); color: #FFF; border-color: var(--ink); }
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) 22rem; gap: 1.2rem; align-items: start; }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+.svgbox { border: 1px solid var(--rule); border-radius: 8px; padding: .5rem; background: #FFF; overflow: auto; }
+.svgbox svg { width: 100%; height: auto; display: block; }
+.svgbox g.node, .svgbox g.edge { cursor: pointer; }
+.svgbox a, .svgbox text { text-decoration: none; }
+.svgbox svg { max-height: 78vh; }
+.svgbox g.dim { opacity: .25; }
+.svgbox g.hl path, .svgbox g.hl polygon { stroke-width: 3.5px; }
+.svgbox g.node.sel polygon, .svgbox g.node.sel path, .svgbox g.node.sel ellipse { stroke-width: 3px; }
+.panel { border: 1px solid var(--rule); border-radius: 8px; padding: .9rem 1rem; background: var(--panel); font-size: .93rem; max-height: 78vh; overflow: auto; }
+.panel h4 { margin: 0 0 .4rem; font-size: 1rem; }
+.panel ul { padding-left: 1.1rem; margin: .4rem 0; }
+.panel li { margin-bottom: .35rem; }
+.chip { display: inline-block; font-size: .78rem; border: 1px solid var(--faint); border-radius: 999px; padding: 0 .45rem; margin-right: .3rem; color: var(--soft); white-space: nowrap; }
+.up { color: var(--blue); font-weight: 700; } .down { color: var(--red); font-weight: 700; }
+.caption { max-width: 70ch; margin: .2rem 0 .6rem; }
+.legend { display: flex; flex-wrap: wrap; gap: .3rem 1.2rem; font-size: .86rem; color: var(--soft); margin: .4rem 0 0; }
+.legend span::before { content: ""; display: inline-block; width: 1.6rem; height: 0; vertical-align: middle; margin-right: .35rem; border-top: 3px solid var(--blue); }
+.legend .r::before { border-top-color: var(--red); } .legend .h::before { border-top: 3px dashed var(--soft); }
+.btnrow { display: flex; gap: .5rem; flex-wrap: wrap; margin: .5rem 0; }
+.btn { font: inherit; font-size: .9rem; padding: .35rem .9rem; border: 1px solid var(--ink); border-radius: 6px; background: #FFF; cursor: pointer; color: var(--ink); }
+.btn.primary { background: var(--ink); color: #FFF; }
+.btn:disabled { opacity: .4; cursor: default; }
+.say { font-size: 1.02rem; background: #FFF; border: 1px solid var(--rule); border-radius: 8px; padding: .8rem 1rem; margin: .5rem 0; }
+.loops button { font: inherit; font-size: .85rem; margin: 0 .3rem .3rem 0; padding: .15rem .55rem; border: 1px solid var(--rule); border-radius: 6px; background: #FFF; cursor: pointer; }
+table.lev { width: 100%; border-collapse: collapse; font-size: .9rem; }
+table.lev th, table.lev td { text-align: left; vertical-align: top; padding: .45rem .5rem; border-bottom: 1px solid var(--rule); }
+table.lev th { font-size: .82rem; color: var(--soft); font-weight: 700; }
+footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding: 1.2rem 0 2.5rem; color: var(--soft); font-size: .88rem; }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="mark" href="../">Clayton Ulm</a>
+  <nav><a href="#how">How it works</a><a href="#maps">Maps</a><a href="#limits">Limits</a><a href="../">Home</a></nav>
+</div></header>
+
+<main>
+<div class="wrap">
+  <h1>From research papers to causal loop diagrams</h1>
+  <p class="lede">I built a tool that reads a body of research papers and turns what they found into a causal loop diagram: a map of what changes what, which feedback loops connect the pieces, and where a decision maker could intervene. Every arrow on the maps below links back to the papers behind it.</p>
+  <p class="soft small">The tool itself is not public. This page shows its results on two literatures so you can see what it produces and explore the maps.</p>
+
+  <h2 id="how">How it works</h2>
+  <ol class="steps">
+    <li><span class="num">1</span><div><b>Gather and screen the papers.</b>A literature is collected (a review team's included studies, or a PubMed search screened by AI reviewers against written inclusion criteria, with two independent screeners per record and a third deciding disagreements).</div></li>
+    <li><span class="num">2</span><div><b>Read each paper's results.</b>The results section, tables and figure captions are read for every finding of the form "a change in X went with a change in Y", with its direction and the sentence it rests on.</div></li>
+    <li><span class="num">3</span><div><b>Check each finding.</b>A second pass rereads each finding against its sentence and drops those the text does not support. Each paper's study design (trial, quasi-experiment, cohort, cross-sectional, qualitative, model, and so on) is coded so arrows can show how strong their evidence is.</div></li>
+    <li><span class="num">4</span><div><b>Group variables into constructs.</b>Hundreds of differently worded variables become a few hundred constructs (for example, many measures of quitting become "tobacco cessation"), keeping direction straight and keeping switches between products apart from use of a product.</div></li>
+    <li><span class="num">5</span><div><b>Build the evidence map.</b>Findings become arrows between constructs, weighted by how many papers support them and flagged when findings point both ways. A small number of reasoned links that no study tested directly are added as dashed arrows, so feedback loops can close.</div></li>
+    <li><span class="num">6</span><div><b>Find the subsystems and tell their stories.</b>The map is split into a few subsystems around central constructs, each drawn as its own diagram with its reinforcing and balancing loops and a short story.</div></li>
+    <li><span class="num">7</span><div><b>Find intervention points.</b>Constructs a decision maker can set (policies, programs, prices, coverage) are traced along evidence paths to outcomes to show which way to push them, what that helps, and what it trades off.</div></li>
+  </ol>
+  <p class="soft small">Everything runs on open-weight language models on a university computing cluster. No step uses the review team's own coding; that coding is used only to test the tool.</p>
+
+  <h3>How well it works so far</h3>
+  <p class="small">Tested against the human coders of the menthol and flavored tobacco review:</p>
+  <div class="stats">
+    <div class="stat"><div class="v">83%</div><div class="l">of findings get the right direction, close to the 86 to 90% agreement between trained human coders</div></div>
+    <div class="stat"><div class="v">72%</div><div class="l">of the findings human coders recorded are found and coded correctly from the papers alone</div></div>
+    <div class="stat"><div class="v">92%</div><div class="l">of papers get an acceptable study design label</div></div>
+  </div>
+
+  <h2 id="maps">Explore the maps</h2>
+  <p>Pick a literature, then click any arrow for its papers and their designs, click a construct for the variables it holds, or press <b>Walk through</b> to step through a subsystem one arrow at a time.</p>
+  <div class="cards">
+    <button class="card" data-map="menthol"><div class="t">Menthol and flavored tobacco restrictions</div><div class="d">137 papers from a published review team's included studies. Four subsystems: quitting and dependence, product substitution, retail compliance and enforcement, and political advocacy.</div></button>
+    <button class="card" data-map="glp1"><div class="t">GLP-1 drugs, organ aging and regulation</div><div class="d">150 open-access papers sampled from PubMed and screened by AI reviewers. Four subsystems: metabolic and cardiovascular risk, organ aging and inflammation, costs and access, and tolerability and adherence.</div></button>
+  </div>
+</div>
+
+<div class="wide" id="viewer"></div>
+
+<div class="wrap">
+  <h2 id="limits">Limits</h2>
+  <ul>
+    <li>The maps summarize what studies reported, not causal proof. An arrow can rest on associations, and its strength shows the number of papers, not an effect size.</li>
+    <li>Dashed arrows are reasoned links, not findings; they are there so loops can close and should be read as hypotheses.</li>
+    <li>The GLP-1 map has no human-coded benchmark yet; it was checked by spot-reading arrows against their papers.</li>
+    <li>Paper lists show titles only. Read the papers themselves before relying on any arrow.</li>
+  </ul>
+</div>
+</main>
+<footer><div class="wrap">Clayton Ulm, UNC Chapel Hill. Questions: <a href="mailto:rulm@unc.edu">rulm@unc.edu</a>. <a href="../">Back to my homepage</a>.</div></footer>
+
+<script>
+(() => {
+  const MAPS = {
+    menthol: { file: "data/menthol.json", title: "Menthol and flavored tobacco restrictions", n: "137 papers" },
+    glp1: { file: "data/glp1.json", title: "GLP-1 drugs, organ aging and regulation", n: "150 papers" }
+  };
+  const V = document.getElementById("viewer");
+  const el = (t, c, x) => { const e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
+  const cache = {};
+  let M = null, D = null, sel = null, walk = null;
+  const up = (s) => (s === "-" || s === "−") ? -1 : 1;
+  const word = (d) => d > 0 ? "goes up" : "goes down";
+  const lc = (s) => s ? s.charAt(0).toLowerCase() + s.slice(1) : s;
+  const keepCaps = (s) => /^[A-Z0-9]{2,}/.test(s) ? s : lc(s);
+
+  async function openMap(key) {
+    document.querySelectorAll(".card").forEach((c) => c.classList.toggle("on", c.dataset.map === key));
+    V.textContent = ""; V.appendChild(el("p", "soft", "Loading the map..."));
+    if (!cache[key]) cache[key] = await (await fetch(MAPS[key].file)).json();
+    M = Object.assign({ key }, MAPS[key], cache[key]);
+    history.replaceState(null, "", "#map-" + key);
+    show("overview");
+  }
+
+  function tabs() {
+    const t = el("div", "tabs");
+    M.diagrams.forEach((d, i) => { const b = el("button", D && D.name === d.name ? "on" : "", d.name === "overview" ? "Overview" : i + ". " + d.title); b.onclick = () => show(d.name); t.appendChild(b); });
+    if (M.leverage) { const b = el("button", !D ? "on" : "", "Intervention points"); b.onclick = () => showLeverage(); t.appendChild(b); }
+    return t;
+  }
+
+  function show(name) {
+    D = M.diagrams.find((d) => d.name === name); sel = null; walk = null;
+    V.textContent = "";
+    V.appendChild(el("h2", null, M.title)); V.lastChild.style.borderTop = "none";
+    V.appendChild(tabs());
+    V.appendChild(el("p", "caption", D.caption));
+    const lg = el("div", "legend"); lg.appendChild(el("span", null, "same direction (more leads to more)")); lg.appendChild(el("span", "r", "opposite direction (more leads to less)")); lg.appendChild(el("span", "h", "reasoned link, not tested directly"));
+    V.appendChild(lg);
+    const br = el("div", "btnrow");
+    if (name !== "overview") { const w = el("button", "btn primary", "Walk through"); w.onclick = startWalk; br.appendChild(w); }
+    const rs = el("button", "btn", "Clear highlight"); rs.onclick = () => { walk = null; highlight(null); info(); }; br.appendChild(rs);
+    V.appendChild(br);
+    const g = el("div", "grid"); const box = el("div", "svgbox"); box.innerHTML = D.svg; const side = el("div", "panel"); side.id = "side";
+    g.appendChild(box); g.appendChild(side); V.appendChild(g);
+    box.querySelectorAll("g.edge").forEach((e) => e.addEventListener("click", (ev) => { ev.stopPropagation(); walk = null; pickEdge(e.id); }));
+    box.querySelectorAll("g.node").forEach((n) => n.addEventListener("click", (ev) => { ev.stopPropagation(); walk = null; pickNode(n.id); }));
+    box.querySelectorAll("title").forEach((t) => t.remove());
+    info();
+  }
+
+  function svgRoot() { return V.querySelector(".svgbox svg"); }
+  function highlight(edges, nodes) {
+    const s = svgRoot(); if (!s) return;
+    s.querySelectorAll("g.edge, g.node").forEach((g) => { g.classList.remove("dim", "hl", "sel"); });
+    if (!edges && !nodes) return;
+    const E = new Set(edges || []), N = new Set(nodes || []);
+    (edges || []).forEach((id) => { const e = D.edges[id]; if (!e) return; Object.entries(D.nodes).forEach(([k, n]) => { if (n.name === e.src || n.name === e.dst) N.add(k); }); });
+    s.querySelectorAll("g.edge").forEach((g) => g.classList.add(E.has(g.id) ? "hl" : "dim"));
+    s.querySelectorAll("g.node").forEach((g) => g.classList.add(N.has(g.id) ? "sel" : "dim"));
+  }
+  function side() { const s = document.getElementById("side"); s.textContent = ""; s.scrollTop = 0; return s; }
+
+  function info() {
+    const s = side();
+    s.appendChild(el("h4", null, D.name === "overview" ? "How to read the overview" : D.title));
+    if (D.name === "overview") {
+      s.appendChild(el("p", null, "Each box is a subsystem or a central construct shared by several subsystems. Arrows summarize the evidence between them. Pick a subsystem tab to see its full diagram."));
+    } else {
+      const ev = Object.values(D.edges).filter((e) => e.status !== "hypothesized" && e.papers > 0).length;
+      s.appendChild(el("p", null, "Click an arrow to see the papers behind it, or a box to see the variables it groups. " + ev + " arrows here are backed by studies; dashed ones are reasoned links."));
+    }
+    if (D.loops && D.loops.length) {
+      s.appendChild(el("h4", null, "Feedback loops"));
+      s.appendChild(el("p", "small soft", "R: reinforcing (a change feeds itself). B: balancing (a change is pushed back). Click one to trace it."));
+      const lw = el("div", "loops");
+      D.loops.slice(0, 16).forEach((l) => { const b = el("button", null, l.label || l.kind); b.title = l.path.join(" → "); b.onclick = () => traceLoop(l); lw.appendChild(b); });
+      s.appendChild(lw);
+    }
+  }
+
+  function edgeId(a, b) { return Object.keys(D.edges).find((k) => D.edges[k].src === a && D.edges[k].dst === b); }
+  function traceLoop(l) {
+    const ids = []; for (let i = 0; i < l.path.length - 1; i++) { const k = edgeId(l.path[i], l.path[i + 1]); if (k) ids.push(k); }
+    highlight(ids);
+    const s = side(); s.appendChild(el("h4", null, "Loop " + (l.label || "") + (l.kind === "R" ? ": reinforcing" : ": balancing")));
+    const p = el("p"); let d = 1; const parts = [];
+    for (let i = 0; i < l.path.length - 1; i++) { if (i === 0) parts.push(l.path[0] + " goes up"); d *= up((l.signs || [])[i]); parts.push(keepCaps(l.path[i + 1]) + " " + word(d)); }
+    p.textContent = parts.join(", so ") + "."; s.appendChild(p);
+    s.appendChild(el("p", "soft small", l.kind === "R" ? "The change comes back around in the same direction, so it can build on itself." : "The change comes back around in the opposite direction, so it tends to push back and settle."));
+    if (l.weakest != null) s.appendChild(el("p", "soft small", "Weakest link: " + l.weakest + " paper" + (l.weakest === 1 ? "" : "s") + (l.hypothesized ? "; " + l.hypothesized + " reasoned link" + (l.hypothesized === 1 ? "" : "s") : "") + "."));
+    const back = el("button", "btn", "Back"); back.onclick = () => { highlight(null); info(); }; s.appendChild(back);
+  }
+
+  function evidenceBlock(s, e) {
+    const d = up(e.sign);
+    const p = el("p"); p.appendChild(document.createTextNode("As " + lc(e.src) + " goes up, " + keepCaps(e.dst) + " "));
+    p.appendChild(el("span", d > 0 ? "up" : "down", d > 0 ? "goes up" : "goes down")); p.appendChild(document.createTextNode("."));
+    s.appendChild(p);
+    if (e.status === "hypothesized" || !e.papers) {
+      s.appendChild(el("p", "soft", e.carries ? "This step is part of a pathway that carries a measured effect (" + e.carries.join("; ") + "); no study tested it on its own." : "A reasoned link: no study in this literature tested it directly. It is drawn so the loop can close and should be read as a hypothesis."));
+      return;
+    }
+    const f = e.findings || {};
+    const tot = (f.same || 0) + (f.opposite || 0);
+    s.appendChild(el("p", "small", e.papers + " paper" + (e.papers === 1 ? "" : "s") + (tot ? "; " + (f.same || 0) + " finding" + ((f.same || 0) === 1 ? "" : "s") + " in this direction, " + (f.opposite || 0) + " the other way" + (f.none ? ", " + f.none + " with no clear difference" : "") : "") + "."));
+    if (tot && (f.opposite || 0) / tot >= 0.25) s.appendChild(el("p", "small", "Mixed: a quarter or more of the findings point the other way."));
+    if (e.designs && e.designs.length) { const dv = el("div", "small"); dv.appendChild(document.createTextNode("Study designs: ")); e.designs.forEach(([n, c]) => dv.appendChild(el("span", "chip", n + " " + c))); s.appendChild(dv); }
+    if (e.list && e.list.length) {
+      s.appendChild(el("h4", null, "Papers")); const ul = el("ul");
+      e.list.slice(0, 40).forEach((x) => { const li = el("li"); li.appendChild(document.createTextNode(x.title || "(untitled)")); const m = el("div", "small soft");
+        if (x.design) m.appendChild(el("span", "chip", x.design)); m.appendChild(document.createTextNode([x.same ? x.same + " same" : "", x.opposite ? x.opposite + " opposite" : "", x.none ? x.none + " no difference" : ""].filter(Boolean).join(", ")));
+        li.appendChild(m); ul.appendChild(li); });
+      s.appendChild(ul); if (e.list.length > 40) s.appendChild(el("p", "soft small", "and " + (e.list.length - 40) + " more"));
+    }
+  }
+
+  function pickEdge(id) {
+    const e = D.edges[id]; if (!e) return; highlight([id]);
+    const s = side(); s.appendChild(el("h4", null, e.src + " → " + e.dst)); evidenceBlock(s, e);
+    const back = el("button", "btn", "Back"); back.onclick = () => { highlight(null); info(); }; s.appendChild(back);
+  }
+  function pickNode(id) {
+    const n = D.nodes[id]; if (!n) return; highlight([], [id]);
+    const s = side(); s.appendChild(el("h4", null, n.name));
+    if (n.story) s.appendChild(el("p", null, n.story));
+    if (n.variables && n.variables.length) { s.appendChild(el("p", "small soft", "Groups " + n.n_variables + " coded variable" + (n.n_variables === 1 ? "" : "s") + ", for example:")); const ul = el("ul", "small"); n.variables.slice(0, 8).forEach((v) => ul.appendChild(el("li", null, v))); s.appendChild(ul); }
+    const back = el("button", "btn", "Back"); back.onclick = () => { highlight(null); info(); }; s.appendChild(back);
+  }
+
+  // walk through: start at the construct with the most outgoing evidence, follow chains, then the reasoned links, then loops
+  function buildSteps() {
+    const E = Object.entries(D.edges).map(([k, e]) => Object.assign({ id: k }, e));
+    const ev = E.filter((e) => e.status !== "hypothesized" && e.papers > 0), hy = E.filter((e) => !(e.status !== "hypothesized" && e.papers > 0));
+    const out = {}; ev.forEach((e) => { out[e.src] = (out[e.src] || 0) + e.papers; });
+    const start = Object.keys(out).sort((a, b) => out[b] - out[a])[0];
+    const done = new Set(), steps = []; let frontier = [start];
+    while (done.size < ev.length) {
+      let nx = ev.filter((e) => !done.has(e.id) && frontier.includes(e.src)).sort((a, b) => b.papers - a.papers);
+      if (!nx.length) nx = ev.filter((e) => !done.has(e.id)).sort((a, b) => b.papers - a.papers).slice(0, 1);
+      const e = nx[0]; done.add(e.id); steps.push({ kind: "edge", e }); frontier = [e.dst, ...frontier];
+    }
+    if (hy.length) steps.push({ kind: "hyp", es: hy });
+    (D.loops || []).slice(0, 4).forEach((l) => steps.push({ kind: "loop", l }));
+    steps.push({ kind: "end" });
+    return steps;
+  }
+  function startWalk() { walk = { steps: buildSteps(), i: 0 }; showStep(); }
+  function showStep() {
+    const st = walk.steps[walk.i]; const s = side();
+    s.appendChild(el("div", "small soft", "Step " + (walk.i + 1) + " of " + walk.steps.length));
+    if (st.kind === "edge") {
+      highlight(walk.steps.slice(0, walk.i + 1).filter((x) => x.kind === "edge").map((x) => x.e.id));
+      s.appendChild(el("h4", null, st.e.src + " → " + st.e.dst)); evidenceBlock(s, st.e);
+    } else if (st.kind === "hyp") {
+      highlight(st.es.map((e) => e.id)); s.appendChild(el("h4", null, "Reasoned links"));
+      s.appendChild(el("p", null, "These links were not tested directly in this literature. They are drawn because they are well established or logically required, so the feedback loops can close:"));
+      const ul = el("ul"); st.es.forEach((e) => ul.appendChild(el("li", null, e.src + " → " + e.dst + " (" + (up(e.sign) > 0 ? "same direction" : "opposite direction") + ")"))); s.appendChild(ul);
+    } else if (st.kind === "loop") {
+      const l = st.l; const ids = []; for (let i = 0; i < l.path.length - 1; i++) { const k = edgeId(l.path[i], l.path[i + 1]); if (k) ids.push(k); }
+      highlight(ids); s.appendChild(el("h4", null, "Loop " + (l.label || "") + (l.kind === "R" ? ": reinforcing" : ": balancing")));
+      let d = 1; const parts = []; for (let i = 0; i < l.path.length - 1; i++) { if (i === 0) parts.push(l.path[0] + " goes up"); d *= up((l.signs || [])[i]); parts.push(keepCaps(l.path[i + 1]) + " " + word(d)); }
+      s.appendChild(el("p", null, parts.join(", so ") + "."));
+    } else {
+      highlight(null); s.appendChild(el("h4", null, "Takeaway")); s.appendChild(el("p", null, D.caption));
+    }
+    const br = el("div", "btnrow");
+    const pv = el("button", "btn", "← Back"); pv.disabled = walk.i === 0; pv.onclick = () => { walk.i--; showStep(); };
+    const nx = el("button", "btn primary", walk.i === walk.steps.length - 1 ? "Done" : "Next →"); nx.onclick = () => { if (walk.i === walk.steps.length - 1) { walk = null; highlight(null); info(); } else { walk.i++; showStep(); } };
+    br.appendChild(pv); br.appendChild(nx); s.appendChild(br);
+  }
+
+  function showLeverage() {
+    D = null; V.textContent = "";
+    V.appendChild(el("h2", null, M.title)); V.lastChild.style.borderTop = "none";
+    V.appendChild(tabs());
+    V.appendChild(el("p", "caption", "Constructs a decision maker can set, traced along evidence paths to outcomes. Push: the direction that helps most outcomes. Why: the best-supported chain, read left to right. These are structural readings of the evidence map, not effect sizes."));
+    const t = el("table", "lev"); const h = el("tr"); ["Lever", "Push", "Helps", "Trade-offs", "Why (best-supported chain)"].forEach((x) => h.appendChild(el("th", null, x))); t.appendChild(h);
+    M.leverage.levers.forEach((v) => {
+      const tr = el("tr"); tr.appendChild(el("td", null, v.lever)); tr.appendChild(el("td", null, v.push));
+      tr.appendChild(el("td", null, v.helps.join(", ") || "none")); tr.appendChild(el("td", null, v.tradeoffs.join(", ") || "none"));
+      const w = v.why[0]; let txt = "";
+      if (w) { let d = (v.push === "decrease" ? -1 : v.push === "mixed" ? (w.push === "decrease" ? -1 : 1) : 1); const parts = [w.path[0] + (d > 0 ? " up" : " down")];
+        for (let i = 1; i < w.path.length; i++) { d *= up(w.signs[i - 1]); parts.push(w.path[i] + (d > 0 ? " up" : " down")); }
+        txt = parts.join(" → ") + " (" + w.papers + " paper" + (w.papers === 1 ? "" : "s") + " at the weakest step)"; }
+      tr.appendChild(el("td", null, txt)); t.appendChild(tr);
+    });
+    V.appendChild(t);
+  }
+
+  document.querySelectorAll(".card").forEach((c) => c.addEventListener("click", () => openMap(c.dataset.map).then(() => document.getElementById("viewer").scrollIntoView({ behavior: "smooth" }))));
+  const fromHash = () => { const m = (location.hash.match(/map-(\w+)/) || [])[1]; if (m && MAPS[m] && (!M || M.key !== m)) openMap(m); };
+  window.addEventListener("hashchange", fromHash);
+  fromHash();
+})();
+</script>
+</body>
+</html>
