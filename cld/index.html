@@ -152,20 +152,18 @@ footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding: 1.2rem 0 
   <p class="soft small">Everything runs on open-weight language models on a university computing cluster. The review team's own coding is never used to build a map; it is used only to test the tool.</p>
 
   <h2 id="accuracy">How well it works</h2>
-  <p>Each step below is harder than the one before: the model gets less help. Scores are on papers held out from development unless marked.</p>
   <div class="ladder">
-    <div class="rung"><span class="num">1</span><b>Excerpt given</b><span class="soft small">Read the direction of a finding from the sentence a coder chose</span><div class="big">94.4%</div><span class="soft small">accuracy, test</span></div>
-    <div class="rung"><span class="num">2</span><b>Excerpt removed</b><span class="soft small">Find the evidence in the paper, then read its direction</span><div class="big">85.8%</div><span class="soft small">accuracy, test</span></div>
-    <div class="rung"><span class="num">3</span><b>All papers at once</b><span class="soft small">Same, without being told which of 140 papers holds it</span><div class="big">78.7%</div><span class="soft small">accuracy, development</span></div>
-    <div class="rung"><span class="num">4</span><b>Code the links</b><span class="soft small">Find every finding in a paper with nothing given: cause, effect, direction</span><div class="big">65.5%</div><span class="soft small">of the coders' links found with the right direction, test</span></div>
+    <div class="rung"><span class="num">1</span><b>Excerpt given</b><div class="big">94.4%</div><span class="soft small">direction right, test</span></div>
+    <div class="rung"><span class="num">2</span><b>Excerpt removed</b><div class="big">85.8%</div><span class="soft small">direction right, test</span></div>
+    <div class="rung"><span class="num">3</span><b>All papers at once</b><div class="big">78.7%</div><span class="soft small">direction right, development</span></div>
+    <div class="rung"><span class="num">4</span><b>Code the links</b><div class="big">65.5%</div><span class="soft small">coders' links found, test</span></div>
   </div>
-  <p class="small">Compared like for like: each chart below holds the task fixed.</p>
+  <p class="soft small">Each step gives the model less help. Steps 1 to 4 use the menthol and flavored tobacco review's coded findings.</p>
   <div class="charts">
     <div class="chart" id="c1"></div>
     <div class="chart" id="c2"></div>
     <div class="chart" id="c3"></div>
   </div>
-  <p class="soft small">Step 4 has no human comparison: no second team coded these papers from scratch. Most links the model finds that the coders did not record are real findings they skipped, so 65.5% is a floor on how much of the literature it captures.</p>
 
   <h2 id="maps">Explore the maps</h2>
   <p>Pick a literature, then click any arrow to see its papers and every coded finding behind it in a sortable evidence table (paper, study design, cause and effect as coded, direction and the excerpt), click a construct for the variables it holds, or press <b>Walk through</b> to step through a subsystem one arrow at a time.</p>
@@ -199,21 +197,18 @@ footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding: 1.2rem 0 
   const el = (t, c, x) => { const e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
 
   const CH = [
-    { id: "c1", title: "Step 1. Excerpt given: read the direction (the task the human coders did)", sub: "Menthol and flavored tobacco findings, coded positive, negative or no effect",
-      rows: [["This model (open, Gemma 4 31B)", 94.4, "ours"], ["GPT-5, closed (team's earlier run)", 90.6, ""], ["o3, closed (team's earlier run)", 90.1, ""], ["Human coder 1", 89.6, "human"], ["Jev classifier", 86.7, ""], ["Human coder 2", 86.2, "human"]],
-      note: "Same task and the same body of findings. Sets differ slightly: 780 held-out findings for this model and Jev, all 1,114 for the closed models, and the coders' own 300 reweighted to all 1,114." },
-    { id: "c2", int: true, title: "Step 2. Excerpt removed: find the evidence in the paper first", sub: "The same 25 hard cause-effect pairs for everyone (30 judgments), full text, no excerpt",
-      rows: [["This model", 83, "ours"], ["Earlier pipeline (Jev, then Claude)", 70, ""], ["Human coder, higher score", 53, "human"], ["Human coder, lower score", 27, "human"]],
-      note: "A small, deliberately hard sample: coders and models did exactly the same task. 7 of the 25 pairs were also seen in development. On all 780 held-out findings this model scores 85.8%." },
-    { id: "c3", title: "Outside tobacco: clinical trial results (Evidence Inference 2.0)", sub: "Same public test set (1,221 findings) and the same measure (macro-F1) for every bar",
-      rows: [["This model (4 open-model runs averaged)", 95.1, "ours"], ["Li 2026, private model", 94.0, ""], ["Li 2026, released model", 92.5, ""], ["Jev classifier", 89.8, ""], ["DeYoung et al. 2020", 78.0, ""]],
-      note: "Doctors who annotated this dataset were 90 to 94% accurate against a checking doctor. That is accuracy, a different measure, so it is not drawn as a bar." }
+    { id: "c1", title: "1. Excerpt given", sub: "Same task as the human coders",
+      rows: [["This model", 94.4, "ours"], ["Human coders (average)", 87.9, "human"], ["Jev classifier", 86.7, ""]] },
+    { id: "c2", int: true, title: "2. Excerpt removed", sub: "Same 25 hard pairs for everyone; the evidence must be found in the paper",
+      rows: [["This model", 83, "ours"], ["Earlier pipeline (Jev, then Claude)", 70, ""], ["Human coders (average)", 40, "human"]] },
+    { id: "c3", title: "Clinical trials", sub: "<a href=\"http://evidence-inference.ebm-nlp.com/\">Evidence Inference 2.0</a> test set, accuracy; doctors checked by a third doctor (<a href=\"https://arxiv.org/abs/2005.04177\">DeYoung et al. 2020</a>)",
+      rows: [["This model", 95.2, "ours"], ["<a href=\"https://arxiv.org/abs/2610.07019\">Li 2026</a>, released model", 92.7, ""], ["Doctors", 90.0, "human"]] }
   ];
   CH.forEach((c) => { const box = document.getElementById(c.id); if (!box) return;
-    box.appendChild(el("h4", null, c.title)); box.appendChild(el("div", "sub", c.sub));
+    box.appendChild(el("h4", null, c.title)); const sb = el("div", "sub"); sb.innerHTML = c.sub; box.appendChild(sb);
     const k = el("div", "keyrow"); [["o", "this model"], ["", "other models"], ["h", "people"]].forEach(([cl, t]) => { if (cl === "h" && !c.rows.some((r) => r[2] === "human")) return; const s_ = el("span"); s_.appendChild(el("i", cl)); s_.appendChild(document.createTextNode(t)); k.appendChild(s_); }); box.appendChild(k);
-    c.rows.forEach(([n, v, w]) => { const r = el("div", "bar " + w); r.appendChild(el("span", "lab", n)); const t = el("div", "track"); const f = el("div", "fill"); f.style.width = v + "%"; t.appendChild(f); r.appendChild(t); r.appendChild(el("span", "val", (c.int ? String(v) : v.toFixed(1)) + "%")); box.appendChild(r); });
-    box.appendChild(el("div", "note", c.note)); });
+    c.rows.forEach(([n, v, w]) => { const r = el("div", "bar " + w); const lb = el("span", "lab"); lb.innerHTML = n; r.appendChild(lb); const t = el("div", "track"); const f = el("div", "fill"); f.style.width = v + "%"; t.appendChild(f); r.appendChild(t); r.appendChild(el("span", "val", (c.int ? String(v) : v.toFixed(1)) + "%")); box.appendChild(r); });
+    });
   const cache = {};
   let M = null, D = null, sel = null, walk = null;
   const up = (s) => (s === "-" || s === "−") ? -1 : 1;
