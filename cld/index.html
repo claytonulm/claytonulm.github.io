@@ -201,6 +201,7 @@ footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding: 1.2rem 0 
   <h2 id="maps">Explore the maps</h2>
   <p>Pick a literature, then click any arrow to see its papers and every coded finding behind it in a sortable evidence table (paper, study design, cause and effect as coded, direction and the excerpt), click a construct for the variables it holds, or press <b>Walk through</b> to step through a subsystem one arrow at a time.</p>
   <div class="cards">
+    <button class="card" data-map="glp1pro"><div class="t">GLP-1 drugs, health behaviors and patient-reported outcomes</div><div class="d">85 open-access papers on how GLP-1 drugs relate to appetite, cravings and eating, alcohol, smoking, activity and sleep, and to quality of life, mood, treatment satisfaction and side effects. Five subsystems: metabolic control, appetite and food noise, well-being and quality of life, tolerability and adherence, and lifestyle behaviors.</div></button>
     <button class="card" data-map="menthol"><div class="t">Menthol and flavored tobacco restrictions</div><div class="d">137 papers from a published review team's included studies. Four subsystems: quitting and dependence, product substitution, retail compliance and enforcement, and political advocacy.</div></button>
     <button class="card" data-map="glp1"><div class="t">GLP-1 drugs, organ aging and regulation</div><div class="d">150 open-access papers sampled from PubMed and screened by AI reviewers. Four subsystems: metabolic and cardiovascular risk, organ aging and inflammation, costs and access, and tolerability and adherence.</div></button>
   </div>
@@ -213,7 +214,7 @@ footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding: 1.2rem 0 
   <ul>
     <li>The maps summarize what studies reported, not causal proof. An arrow can rest on associations, and its strength shows the number of papers, not an effect size.</li>
     <li>Dashed arrows are reasoned links, not findings; they are there so loops can close and should be read as hypotheses.</li>
-    <li>The GLP-1 map has no human-coded benchmark yet; it was checked by spot-reading arrows against their papers.</li>
+    <li>The GLP-1 maps have no human-coded benchmark yet; they were checked by spot-reading arrows against their papers (for the behaviors and patient-reported outcomes map, 7 of 10 sampled arrows fully right, 2 partly, 1 wrong).</li>
     <li>Excerpts are short passages shown so each arrow can be checked; read the papers themselves before relying on any arrow.</li>
   </ul>
 </div>
@@ -224,7 +225,8 @@ footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding: 1.2rem 0 
 (() => {
   const MAPS = {
     menthol: { file: "data/menthol.json", title: "Menthol and flavored tobacco restrictions", n: "137 papers" },
-    glp1: { file: "data/glp1.json", title: "GLP-1 drugs, organ aging and regulation", n: "150 papers" }
+    glp1: { file: "data/glp1.json", title: "GLP-1 drugs, organ aging and regulation", n: "150 papers" },
+    glp1pro: { file: "data/glp1pro.json", title: "GLP-1 drugs, health behaviors and patient-reported outcomes", n: "85 papers" }
   };
   const V = document.getElementById("viewer");
   const el = (t, c, x) => { const e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
