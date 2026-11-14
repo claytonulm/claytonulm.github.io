@@ -68,12 +68,13 @@ h3 { font-size: 1.05rem; margin: 1.4rem 0 .4rem; }
 .panel li { margin-bottom: .35rem; }
 .chip { display: inline-block; font-size: .78rem; border: 1px solid var(--faint); border-radius: 999px; padding: 0 .45rem; margin-right: .3rem; color: var(--soft); white-space: nowrap; }
 .up { color: var(--blue); font-weight: 700; } .down { color: var(--red); font-weight: 700; }
-.wf { width: min(78rem, calc(100vw - 2.5rem)); position: relative; left: 50%; transform: translateX(-50%); margin: 1rem 0 1.2rem; }
-.wf .scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 8px; padding: .8rem 1rem; background: #FFF; }
-.wf img { display: block; width: 100%; min-width: 52rem; height: auto; }
-.wf img + img { border-top: 1px solid var(--rule); margin-top: .7rem; padding-top: .7rem; }
+.wf { margin: 1rem 0 1.2rem; }
+.wf .scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 8px; padding: .5rem .4rem; background: #FFF; }
+.wf img { display: block; width: 100%; min-width: 44rem; height: auto; }
+.wf a { display: block; }
+.wf a + a img { border-top: 1px solid var(--rule); margin-top: .5rem; padding-top: .5rem; }
 .wf .hint { display: none; }
-@media (max-width: 56rem) { .wf .hint { display: block; } }
+@media (max-width: 47rem) { .wf .hint { display: block; } }
 .caption { max-width: 70ch; margin: .2rem 0 .6rem; }
 .legend { display: flex; flex-wrap: wrap; gap: .3rem 1.2rem; font-size: .86rem; color: var(--soft); margin: .4rem 0 0; }
 .legend span::before { content: ""; display: inline-block; width: 1.6rem; height: 0; vertical-align: middle; margin-right: .35rem; border-top: 3px solid var(--blue); }
@@ -153,9 +154,9 @@ footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding: 1.2rem 0 
   <h2 id="how">How it works</h2>
   <figure class="wf">
     <div class="scroll">
-      <img src="fig/workflow_a.svg" width="1100" height="256" alt="Panel a, evidence extraction. A stack of papers is split into the results text of each paper, one per reader agent 1, 2, up to n. Each agent returns findings as a cause, an effect, a direction and a quote. A reviewer agent checks each paper's findings, and the kept findings are pooled.">
-      <img src="fig/workflow_b.svg" width="1100" height="258" loading="lazy" alt="Panel b, variable grouping. Variable names are merged into fine codes and then constructs by coder agents. Findings are pooled into connections between constructs, one square per paper, colored by direction, with a net sign.">
-      <img src="fig/workflow_c.svg" width="1100" height="234" loading="lazy" alt="Panel c, map building. Connections are reviewed, subsystems are selected, loops and polarity are drawn, and every arrow on the final map links to its quotes and study designs.">
+      <a href="fig/workflow_a.svg" title="Open this panel full size"><img src="fig/workflow_a.svg" width="1100" height="256" alt="Panel a, evidence extraction. A stack of papers is split into the results text of each paper, one per reader agent 1, 2, up to n. Each agent returns findings as a cause, an effect, a direction and a quote. A reviewer agent checks each paper's findings, and the kept findings are pooled."></a>
+      <a href="fig/workflow_b.svg" title="Open this panel full size"><img src="fig/workflow_b.svg" width="1100" height="258" loading="lazy" alt="Panel b, variable grouping. Variable names are merged into fine codes and then constructs by coder agents. Findings are pooled into connections between constructs, one square per paper, colored by direction, with a net sign."></a>
+      <a href="fig/workflow_c.svg" title="Open this panel full size"><img src="fig/workflow_c.svg" width="1100" height="234" loading="lazy" alt="Panel c, map building. Connections are reviewed, subsystems are selected, loops and polarity are drawn, and every arrow on the final map links to its quotes and study designs."></a>
     </div>
     <p class="soft small hint">Scroll sideways to see the whole figure.</p>
   </figure>
