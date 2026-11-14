@@ -68,6 +68,12 @@ h3 { font-size: 1.05rem; margin: 1.4rem 0 .4rem; }
 .panel li { margin-bottom: .35rem; }
 .chip { display: inline-block; font-size: .78rem; border: 1px solid var(--faint); border-radius: 999px; padding: 0 .45rem; margin-right: .3rem; color: var(--soft); white-space: nowrap; }
 .up { color: var(--blue); font-weight: 700; } .down { color: var(--red); font-weight: 700; }
+.wf { width: min(78rem, calc(100vw - 2.5rem)); position: relative; left: 50%; transform: translateX(-50%); margin: 1rem 0 1.2rem; }
+.wf .scroll { overflow-x: auto; border: 1px solid var(--rule); border-radius: 8px; padding: .8rem 1rem; background: #FFF; }
+.wf img { display: block; width: 100%; min-width: 52rem; height: auto; }
+.wf img + img { border-top: 1px solid var(--rule); margin-top: .7rem; padding-top: .7rem; }
+.wf .hint { display: none; }
+@media (max-width: 56rem) { .wf .hint { display: block; } }
 .caption { max-width: 70ch; margin: .2rem 0 .6rem; }
 .legend { display: flex; flex-wrap: wrap; gap: .3rem 1.2rem; font-size: .86rem; color: var(--soft); margin: .4rem 0 0; }
 .legend span::before { content: ""; display: inline-block; width: 1.6rem; height: 0; vertical-align: middle; margin-right: .35rem; border-top: 3px solid var(--blue); }
@@ -145,6 +151,15 @@ footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding: 1.2rem 0 
   <p class="soft small">The tool itself is not public. This page shows its results on two literatures so you can see what it produces and explore the maps.</p>
 
   <h2 id="how">How it works</h2>
+  <figure class="wf">
+    <div class="scroll">
+      <img src="fig/workflow_a.svg" width="1100" height="244" alt="Panel a, evidence extraction. A stack of papers becomes results text and is split across reader agents 1, 2, up to n. Each agent returns findings as a cause, an effect, a direction and a quote. A checker agent reviews each paper's findings, and the kept findings are pooled.">
+      <img src="fig/workflow_b.svg" width="1100" height="258" loading="lazy" alt="Panel b, variable grouping. Variable names are merged into fine codes and then constructs by coder agents. Findings are pooled into connections between constructs, one square per paper, colored by direction, with a net sign.">
+      <img src="fig/workflow_c.svg" width="1100" height="234" loading="lazy" alt="Panel c, map building. Connections are reviewed, subsystems are selected, loops and polarity are drawn, and every arrow on the final map links to its quotes and study designs.">
+    </div>
+    <p class="soft small hint">Scroll sideways to see the whole figure.</p>
+    <p class="soft small caption">The workflow that produces the evidence behind each map. Robot icons mark steps done by a language model; many copies run in parallel, one per paper. Blue means the two variables move in the same direction, red the opposite direction, gray no relationship. Dashed arrows are reasoned links with no finding behind them.</p>
+  </figure>
   <div class="flow">
     <div class="box"><b>Papers</b><span>A review team's included studies, or a PubMed search screened by AI reviewers (two per record, a third breaking ties)</span></div>
     <div class="arr"></div>
