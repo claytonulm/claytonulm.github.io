@@ -102,6 +102,7 @@
 <circle cx="593" cy="195" r="1.6" fill="#757575"/>
 <g transform="translate(694.94,119.35) scale(0.21103117505995203)"><path d="M230.91,172A8,8,0,0,1,228,182.91l-96,56a8,8,0,0,1-8.06,0l-96-56A8,8,0,0,1,36,169.09l92,53.65,92-53.65A8,8,0,0,1,230.91,172ZM220,121.09l-92,53.65L36,121.09A8,8,0,0,0,28,134.91l96,56a8,8,0,0,0,8.06,0l96-56A8,8,0,1,0,220,121.09ZM24,80a8,8,0,0,1,4-6.91l96-56a8,8,0,0,1,8.06,0l96,56a8,8,0,0,1,0,13.82l-96,56a8,8,0,0,1-8.06,0l-96-56A8,8,0,0,1,24,80Zm23.88,0L128,126.74,208.12,80,128,33.26Z" fill="#1A1A1A" fill-rule="evenodd"/></g>
 <text x="722" y="194" font-size="12" fill="#000000" text-anchor="middle">N findings</text>
+<rect x="834" y="76" width="236" height="152" rx="7" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>
 <text x="850" y="100" font-size="12.5" fill="#000000" font-weight="bold">Direction</text>
 <circle cx="859" cy="124" r="8" fill="#2166AC"/>
 <text x="859" y="128.3" font-size="12.5" fill="#FFFFFF" font-weight="bold" text-anchor="middle">+</text>
