@@ -160,21 +160,6 @@ footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding: 1.2rem 0 
     <p class="soft small hint">Scroll sideways to see the whole figure.</p>
     <p class="soft small caption">The workflow that produces the evidence behind each map. Robot icons mark steps done by a language model; many copies run in parallel, one per paper. Blue means the two variables move in the same direction, red the opposite direction, gray no relationship. Dashed arrows are reasoned links with no finding behind them.</p>
   </figure>
-  <div class="flow">
-    <div class="box"><b>Papers</b><span>A review team's included studies, or a PubMed search screened by AI reviewers (two per record, a third breaking ties)</span></div>
-    <div class="arr"></div>
-    <div class="box"><b>Read each paper's results</b><span>Every finding of the form "a change in X went with a change in Y", with its direction and the sentence it rests on</span></div>
-    <div class="arr"></div>
-    <div class="box"><b>Check each finding</b><span>Reread against its sentence; drop what the text does not support. Code each paper's study design</span></div>
-    <div class="arr"></div>
-    <div class="box"><b>Group variables into constructs</b><span>Hundreds of differently worded variables become a few hundred named constructs</span></div>
-    <div class="arr"></div>
-    <div class="box"><b>Evidence map</b><span>Arrows weighted by papers, flagged when findings disagree; a few reasoned links (dashed) so loops can close</span></div>
-    <div class="arr"></div>
-    <div class="box"><b>Subsystems, loops and stories</b><span>A few diagrams around central constructs, with reinforcing and balancing loops</span></div>
-    <div class="arr"></div>
-    <div class="box dark"><b>Intervention points</b><span>Levers a decision maker can set, traced to outcomes: which way to push, what it helps, what it trades off</span></div>
-  </div>
   <p class="soft small">Everything runs on open-weight language models on a university computing cluster. The review team's own coding is never used to build a map; it is used only to test the tool.</p>
 
   <h2 id="accuracy">How well it works</h2>
