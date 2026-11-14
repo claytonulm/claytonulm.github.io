@@ -45,6 +45,8 @@ h3 { font-size: 1.05rem; margin: 1.4rem 0 .4rem; }
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1rem; margin-top: .8rem; }
 .card { border: 1px solid var(--rule); border-radius: 8px; padding: 1rem 1.1rem; cursor: pointer; background: #FFF; text-align: left; font: inherit; color: inherit; }
 .card:hover, .card.on { border-color: var(--ink); }
+.cards .card { display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch; }
+.card .prev { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; margin: 0 0 .7rem; padding-bottom: .6rem; border-bottom: 1px solid var(--rule); pointer-events: none; }
 .card .t { font-weight: 700; font-size: 1.05rem; }
 .card .d { color: var(--soft); font-size: .92rem; margin-top: .3rem; }
 /* viewer */
@@ -191,9 +193,9 @@ footer { border-top: 1px solid var(--rule); margin-top: 3rem; padding: 1.2rem 0 
   <h2 id="maps">Explore the maps</h2>
   <p>Pick a literature, then click any arrow to see its papers and every coded finding behind it in a sortable evidence table (paper, study design, cause and effect as coded, direction and the excerpt), click a construct for the variables it holds, or press <b>Walk through</b> to step through a subsystem one arrow at a time.</p>
   <div class="cards">
-    <button class="card" data-map="glp1pro"><div class="t">GLP-1 drugs, health behaviors and patient-reported outcomes</div><div class="d">85 open-access papers on how GLP-1 drugs relate to appetite, cravings and eating, alcohol, smoking, activity and sleep, and to quality of life, mood, treatment satisfaction and side effects. Five subsystems: metabolic control, appetite and food noise, well-being and quality of life, tolerability and adherence, and lifestyle behaviors.</div></button>
-    <button class="card" data-map="menthol"><div class="t">Menthol and flavored tobacco restrictions</div><div class="d">137 papers from a published review team's included studies. Four subsystems: quitting and dependence, product substitution, retail compliance and enforcement, and political advocacy.</div></button>
-    <button class="card" data-map="glp1"><div class="t">GLP-1 drugs, organ aging and regulation</div><div class="d">150 open-access papers sampled from PubMed and screened by AI reviewers. Four subsystems: metabolic and cardiovascular risk, organ aging and inflammation, costs and access, and tolerability and adherence.</div></button>
+    <button class="card" data-map="glp1pro"><img class="prev" src="fig/preview_glp1pro.svg" alt="Preview of the GLP-1 health behaviors map: its first subsystem diagram" loading="lazy"><div class="t">GLP-1 drugs, health behaviors and patient-reported outcomes</div><div class="d">85 open-access papers on how GLP-1 drugs relate to appetite, cravings and eating, alcohol, smoking, activity and sleep, and to quality of life, mood, treatment satisfaction and side effects. Five subsystems: metabolic control, appetite and food noise, well-being and quality of life, tolerability and adherence, and lifestyle behaviors.</div></button>
+    <button class="card" data-map="menthol"><img class="prev" src="fig/preview_menthol.svg" alt="Preview of the menthol and flavored tobacco map: its first subsystem diagram" loading="lazy"><div class="t">Menthol and flavored tobacco restrictions</div><div class="d">137 papers from a published review team's included studies. Four subsystems: quitting and dependence, product substitution, retail compliance and enforcement, and political advocacy.</div></button>
+    <button class="card" data-map="glp1"><img class="prev" src="fig/preview_glp1.svg" alt="Preview of the GLP-1 organ aging map: its first subsystem diagram" loading="lazy"><div class="t">GLP-1 drugs, organ aging and regulation</div><div class="d">150 open-access papers sampled from PubMed and screened by AI reviewers. Four subsystems: metabolic and cardiovascular risk, organ aging and inflammation, costs and access, and tolerability and adherence.</div></button>
   </div>
 </div>
 

@@ -1,0 +1,266 @@
+<svg viewBox="0 0 1294 1073" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(2.08 2.08) rotate(0) translate(21.6 493.63)">
+<title>G</title>
+<polygon fill="white" stroke="transparent" points="-21.6,21.6 -21.6,-493.63 599.33,-493.63 599.33,21.6 -21.6,21.6"/>
+
+<g id="n0" class="node">
+<title>n0</title>
+<g id="a_n0"><a xlink:title="Intention to quit tobacco use">
+<path fill="none" stroke="#1a1a1a" stroke-width="0.9" d="M255.76,-267.03C255.76,-267.03 165.76,-267.03 165.76,-267.03 159.76,-267.03 153.76,-261.03 153.76,-255.03 153.76,-255.03 153.76,-243.03 153.76,-243.03 153.76,-237.03 159.76,-231.03 165.76,-231.03 165.76,-231.03 255.76,-231.03 255.76,-231.03 261.76,-231.03 267.76,-237.03 267.76,-243.03 267.76,-243.03 267.76,-255.03 267.76,-255.03 267.76,-261.03 261.76,-267.03 255.76,-267.03"/>
+<text text-anchor="middle" x="210.76" y="-252.43" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1a1a1a">Intention to quit</text>
+<text text-anchor="middle" x="210.76" y="-239.43" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1a1a1a">tobacco use</text>
+</a>
+</g>
+</g>
+
+<g id="n4" class="node">
+<title>n4</title>
+<g id="a_n4"><a xlink:title="Tobacco cessation or abstinence">
+<path fill="none" stroke="#1a1a1a" stroke-width="0.9" d="M404.71,-369.49C404.71,-369.49 284.71,-369.49 284.71,-369.49 278.71,-369.49 272.71,-363.49 272.71,-357.49 272.71,-357.49 272.71,-345.49 272.71,-345.49 272.71,-339.49 278.71,-333.49 284.71,-333.49 284.71,-333.49 404.71,-333.49 404.71,-333.49 410.71,-333.49 416.71,-339.49 416.71,-345.49 416.71,-345.49 416.71,-357.49 416.71,-357.49 416.71,-363.49 410.71,-369.49 404.71,-369.49"/>
+<text text-anchor="middle" x="344.71" y="-354.89" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1a1a1a">Tobacco cessation or</text>
+<text text-anchor="middle" x="344.71" y="-341.89" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1a1a1a">abstinence</text>
+</a>
+</g>
+</g>
+
+<g id="e6" class="edge">
+<title>n0&#45;&gt;n4</title>
+<g id="a_e6"><a xlink:title="Intention to quit tobacco use to Tobacco cessation or abstinence: 3 papers">
+<path fill="none" stroke="#1f5fa8" stroke-width="2.6" d="M255.16,-267.15C300.38,-286.38 312.15,-296.08 330.7,-327.03"/>
+<polygon fill="#1f5fa8" stroke="#1f5fa8" stroke-width="2.6" points="328.59,-328.28 334.26,-333.06 332.82,-325.79 328.59,-328.28"/>
+</a>
+</g>
+<text text-anchor="middle" x="294.99" y="-295.94" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#1f5fa8">+3</text>
+</g>
+
+<g id="n5" class="node">
+<title>n5</title>
+<g id="a_n5"><a xlink:title="Tobacco quit attempts">
+<path fill="none" stroke="#1a1a1a" stroke-width="0.9" d="M330.43,-467.99C330.43,-467.99 260.43,-467.99 260.43,-467.99 254.43,-467.99 248.43,-461.99 248.43,-455.99 248.43,-455.99 248.43,-443.99 248.43,-443.99 248.43,-437.99 254.43,-431.99 260.43,-431.99 260.43,-431.99 330.43,-431.99 330.43,-431.99 336.43,-431.99 342.43,-437.99 342.43,-443.99 342.43,-443.99 342.43,-455.99 342.43,-455.99 342.43,-461.99 336.43,-467.99 330.43,-467.99"/>
+<text text-anchor="middle" x="295.43" y="-453.39" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1a1a1a">Tobacco quit</text>
+<text text-anchor="middle" x="295.43" y="-440.39" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1a1a1a">attempts</text>
+</a>
+</g>
+</g>
+
+<g id="e11" class="edge">
+<title>n0&#45;&gt;n5</title>
+<g id="a_e11"><a xlink:title="Intention to quit tobacco use to Tobacco quit attempts: 1 papers">
+<path fill="none" stroke="#1f5fa8" stroke-width="1.4" d="M214.19,-267.35C225.74,-303.63 259.52,-384.5 279.91,-425.37"/>
+<polygon fill="#1f5fa8" stroke="#1f5fa8" stroke-width="1.4" points="277.83,-426.68 283.19,-431.81 282.2,-424.46 277.83,-426.68"/>
+</a>
+</g>
+<text text-anchor="middle" x="238.23" y="-353.79" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#1f5fa8">+1</text>
+</g>
+
+<g id="n1" class="node">
+<title>n1</title>
+<g id="a_n1"><a xlink:title="Nicotine dependence">
+<path fill="none" stroke="#1a1a1a" stroke-width="0.9" d="M133,-138.04C133,-138.04 12,-138.04 12,-138.04 6,-138.04 0,-132.04 0,-126.04 0,-126.04 0,-114.04 0,-114.04 0,-108.04 6,-102.04 12,-102.04 12,-102.04 133,-102.04 133,-102.04 139,-102.04 145,-108.04 145,-114.04 145,-114.04 145,-126.04 145,-126.04 145,-132.04 139,-138.04 133,-138.04"/>
+<text text-anchor="middle" x="72.5" y="-116.94" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1a1a1a">Nicotine dependence</text>
+</a>
+</g>
+</g>
+
+<g id="e2" class="edge">
+<title>n1&#45;&gt;n0</title>
+<g id="a_e2"><a xlink:title="Nicotine dependence to Intention to quit tobacco use: 7 papers">
+<path fill="none" stroke="#c62828" stroke-width="4.4" d="M81.69,-138.24C101.79,-177.14 112.19,-187.32 175.2,-226.9"/>
+<polygon fill="#c62828" stroke="#c62828" stroke-width="4.4" points="174.1,-229.4 181.46,-230.83 176.96,-224.83 174.1,-229.4"/>
+</a>
+</g>
+<text text-anchor="middle" x="111.65" y="-196.43" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#c62828">−3.5</text>
+</g>
+
+<g id="n2" class="node">
+<title>n2</title>
+<g id="a_n2"><a xlink:title="Preference for flavored tobacco products">
+<path fill="none" stroke="#1a1a1a" stroke-width="0.9" d="M150.01,-387.87C150.01,-387.87 55.01,-387.87 55.01,-387.87 49.01,-387.87 43.01,-381.87 43.01,-375.87 43.01,-375.87 43.01,-352.87 43.01,-352.87 43.01,-346.87 49.01,-340.87 55.01,-340.87 55.01,-340.87 150.01,-340.87 150.01,-340.87 156.01,-340.87 162.01,-346.87 162.01,-352.87 162.01,-352.87 162.01,-375.87 162.01,-375.87 162.01,-381.87 156.01,-387.87 150.01,-387.87"/>
+<text text-anchor="middle" x="102.51" y="-374.27" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1a1a1a">Preference for</text>
+<text text-anchor="middle" x="102.51" y="-361.27" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1a1a1a">flavored tobacco</text>
+<text text-anchor="middle" x="102.51" y="-348.27" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1a1a1a">products</text>
+</a>
+</g>
+</g>
+
+<g id="e8" class="edge">
+<title>n1&#45;&gt;n2</title>
+<g id="a_e8"><a xlink:title="Nicotine dependence to Preference for flavored tobacco products: 1 papers">
+<path fill="none" stroke="#1f5fa8" stroke-width="1.4" d="M67.84,-138.32C42.15,-239.69 41.89,-254.32 85.74,-334.22"/>
+<polygon fill="#1f5fa8" stroke="#1f5fa8" stroke-width="1.4" points="83.73,-335.65 89.26,-340.6 88.02,-333.29 83.73,-335.65"/>
+</a>
+</g>
+<text text-anchor="middle" x="42.72" y="-247.6" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#1f5fa8">+1</text>
+</g>
+
+<g id="h3" class="edge">
+<title>n2&#45;&gt;n0</title>
+<g id="a_h3"><a xlink:title="Hypothesized: no evidence in this review">
+<path fill="none" stroke="#c62828" stroke-width="1.3" stroke-dasharray="5,2" d="M111.17,-340.77C124.29,-306.71 133.42,-296.14 174.49,-270.78"/>
+<polygon fill="#c62828" stroke="#c62828" stroke-width="1.3" points="175.82,-272.84 180.51,-267.1 173.26,-268.66 175.82,-272.84"/>
+</a>
+</g>
+<text text-anchor="middle" x="130.84" y="-299.21" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#c62828">−?</text>
+</g>
+
+<g id="e5" class="edge">
+<title>n2&#45;&gt;n4</title>
+<g id="a_e5"><a xlink:title="Preference for flavored tobacco products to Tobacco cessation or abstinence: 3 papers">
+<path fill="none" stroke="#1f5fa8" stroke-width="2.6" d="M162.07,-367.11C193.24,-366.39 231.81,-364.51 265.47,-362.1"/>
+<polygon fill="#1f5fa8" stroke="#1f5fa8" stroke-width="2.6" points="265.77,-364.53 272.57,-361.58 265.41,-359.65 265.77,-364.53"/>
+</a>
+</g>
+<text text-anchor="middle" x="209.42" y="-368.21" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#1f5fa8">+3</text>
+</g>
+
+<g id="n3" class="node">
+<title>n3</title>
+<g id="a_n3"><a xlink:title="Stringency of flavored tobacco product restrictions">
+<path fill="#ededed" stroke="#1a1a1a" stroke-width="1.6" d="M489.01,-243.16C489.01,-243.16 347.01,-243.16 347.01,-243.16 341.01,-243.16 335.01,-237.16 335.01,-231.16 335.01,-231.16 335.01,-196.16 335.01,-196.16 335.01,-190.16 341.01,-184.16 347.01,-184.16 347.01,-184.16 489.01,-184.16 489.01,-184.16 495.01,-184.16 501.01,-190.16 501.01,-196.16 501.01,-196.16 501.01,-231.16 501.01,-231.16 501.01,-237.16 495.01,-243.16 489.01,-243.16"/>
+<text text-anchor="middle" x="418.01" y="-227.16" font-family="Helvetica,sans-Serif" font-size="15.00" fill="#1a1a1a">Stringency of</text>
+<text text-anchor="middle" x="418.01" y="-210.16" font-family="Helvetica,sans-Serif" font-size="15.00" fill="#1a1a1a">flavored tobacco</text>
+<text text-anchor="middle" x="418.01" y="-193.16" font-family="Helvetica,sans-Serif" font-size="15.00" fill="#1a1a1a">product restrictions</text>
+</a>
+</g>
+</g>
+
+<g id="e1" class="edge">
+<title>n3&#45;&gt;n0</title>
+<g id="a_e1"><a xlink:title="Stringency of flavored tobacco product restrictions to Intention to quit tobacco use: 10 papers">
+<path fill="none" stroke="#1f5fa8" stroke-width="4.4" d="M334.98,-199.62C302.78,-197.52 283.14,-205.02 246.01,-227.24"/>
+<polygon fill="#1f5fa8" stroke="#1f5fa8" stroke-width="4.4" points="244.49,-225 239.89,-230.93 247.28,-229.62 244.49,-225"/>
+</a>
+</g>
+<text text-anchor="middle" x="270.46" y="-210.56" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#1f5fa8">+7.5</text>
+</g>
+
+<g id="e3" class="edge">
+<title>n3&#45;&gt;n5</title>
+<g id="a_e3"><a xlink:title="Stringency of flavored tobacco product restrictions to Tobacco quit attempts: 6 papers">
+<path fill="none" stroke="#1f5fa8" stroke-width="4.4" d="M404.28,-243.32C383.67,-287.42 372.07,-309.14 308.83,-425.37"/>
+<polygon fill="#1f5fa8" stroke="#1f5fa8" stroke-width="4.4" points="306.36,-424.26 305.38,-431.7 311.1,-426.84 306.36,-424.26"/>
+</a>
+</g>
+<text text-anchor="middle" x="348.12" y="-329.34" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#1f5fa8">+6</text>
+</g>
+
+<g id="n6" class="node">
+<title>n6</title>
+<g id="a_n6"><a xlink:title="Total tobacco use">
+<path fill="none" stroke="#1a1a1a" stroke-width="0.9" d="M340.08,-36C340.08,-36 241.08,-36 241.08,-36 235.08,-36 229.08,-30 229.08,-24 229.08,-24 229.08,-12 229.08,-12 229.08,-6 235.08,0 241.08,0 241.08,0 340.08,0 340.08,0 346.08,0 352.08,-6 352.08,-12 352.08,-12 352.08,-24 352.08,-24 352.08,-30 346.08,-36 340.08,-36"/>
+<text text-anchor="middle" x="290.58" y="-14.9" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1a1a1a">Total tobacco use</text>
+</a>
+</g>
+</g>
+
+<g id="e0" class="edge">
+<title>n3&#45;&gt;n6</title>
+<g id="a_e0"><a xlink:title="Stringency of flavored tobacco product restrictions to Total tobacco use: 23 papers">
+<path fill="none" stroke="#c62828" stroke-width="4.4" d="M411.41,-183.95C392.07,-98.34 383.75,-82.88 323.12,-40.34"/>
+<polygon fill="#c62828" stroke="#c62828" stroke-width="4.4" points="324.38,-37.92 317.09,-36.13 321.29,-42.35 324.38,-37.92"/>
+</a>
+</g>
+<text text-anchor="middle" x="352.71" y="-99.14" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#c62828">−13 mixed</text>
+</g>
+
+<g id="n7" class="node">
+<title>n7</title>
+<g id="a_n7"><a xlink:title="Use of cessation support">
+<path fill="none" stroke="#1a1a1a" stroke-width="0.9" d="M565.73,-423.78C565.73,-423.78 472.73,-423.78 472.73,-423.78 466.73,-423.78 460.73,-417.78 460.73,-411.78 460.73,-411.78 460.73,-399.78 460.73,-399.78 460.73,-393.78 466.73,-387.78 472.73,-387.78 472.73,-387.78 565.73,-387.78 565.73,-387.78 571.73,-387.78 577.73,-393.78 577.73,-399.78 577.73,-399.78 577.73,-411.78 577.73,-411.78 577.73,-417.78 571.73,-423.78 565.73,-423.78"/>
+<text text-anchor="middle" x="519.23" y="-409.18" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1a1a1a">Use of cessation</text>
+<text text-anchor="middle" x="519.23" y="-396.18" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#1a1a1a">support</text>
+</a>
+</g>
+</g>
+
+<g id="e4" class="edge">
+<title>n3&#45;&gt;n7</title>
+<g id="a_e4"><a xlink:title="Stringency of flavored tobacco product restrictions to Use of cessation support: 3 papers">
+<path fill="none" stroke="#1f5fa8" stroke-width="2.6" d="M450.76,-243.25C504.18,-292.57 510.3,-307.95 516.98,-380.25"/>
+<polygon fill="#1f5fa8" stroke="#1f5fa8" stroke-width="2.6" points="514.56,-380.68 517.63,-387.43 519.44,-380.24 514.56,-380.68"/>
+</a>
+</g>
+<text text-anchor="middle" x="495.22" y="-310.4" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#1f5fa8">+9</text>
+</g>
+
+<g id="e10" class="edge">
+<title>n4&#45;&gt;n2</title>
+<g id="a_e10"><a xlink:title="Tobacco cessation or abstinence to Preference for flavored tobacco products: 1 papers">
+<path fill="none" stroke="#c62828" stroke-width="1.4" d="M272.7,-349.09C239.98,-350.09 201.5,-352.17 169.42,-354.69"/>
+<polygon fill="#c62828" stroke="#c62828" stroke-width="1.4" points="169.04,-352.26 162.26,-355.26 169.43,-357.14 169.04,-352.26"/>
+</a>
+</g>
+<text text-anchor="middle" x="209.5" y="-354.7" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#c62828">−1</text>
+</g>
+
+<g id="h0" class="edge">
+<title>n4&#45;&gt;n3</title>
+<g id="a_h0"><a xlink:title="Hypothesized: no evidence in this review">
+<path fill="none" stroke="#1f5fa8" stroke-width="1.3" stroke-dasharray="5,2" d="M364.16,-333.23C401.35,-297.91 410.02,-285.68 414.54,-250.67"/>
+<polygon fill="#1f5fa8" stroke="#1f5fa8" stroke-width="1.3" points="417.02,-250.59 415.4,-243.36 412.15,-250.02 417.02,-250.59"/>
+</a>
+</g>
+<text text-anchor="middle" x="393.62" y="-295" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#1f5fa8">+?</text>
+</g>
+
+<g id="e7" class="edge">
+<title>n5&#45;&gt;n0</title>
+<g id="a_e7"><a xlink:title="Tobacco quit attempts to Intention to quit tobacco use: 2 papers">
+<path fill="none" stroke="#1f5fa8" stroke-width="2" d="M292,-431.67C280.45,-395.39 246.67,-314.52 226.28,-273.65"/>
+<polygon fill="#1f5fa8" stroke="#1f5fa8" stroke-width="2" points="228.36,-272.33 223,-267.21 223.99,-274.56 228.36,-272.33"/>
+</a>
+</g>
+<text text-anchor="middle" x="251.96" y="-339.63" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#1f5fa8">+2</text>
+</g>
+
+<g id="e9" class="edge">
+<title>n5&#45;&gt;n2</title>
+<g id="a_e9"><a xlink:title="Tobacco quit attempts to Preference for flavored tobacco products: 1 papers">
+<path fill="none" stroke="#1f5fa8" stroke-width="1.4" d="M248.24,-449.08C201.18,-446.67 183.63,-437.01 133.82,-392.67"/>
+<polygon fill="#1f5fa8" stroke="#1f5fa8" stroke-width="1.4" points="135.42,-390.81 128.57,-387.98 132.15,-394.47 135.42,-390.81"/>
+</a>
+</g>
+<text text-anchor="middle" x="173.11" y="-433.59" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#1f5fa8">+1</text>
+</g>
+
+<g id="h1" class="edge">
+<title>n5&#45;&gt;n4</title>
+<g id="a_h1"><a xlink:title="Hypothesized: no evidence in this review">
+<path fill="none" stroke="#1f5fa8" stroke-width="1.3" stroke-dasharray="5,2" d="M304.32,-431.72C310.62,-418.85 316.13,-407.89 332.18,-376.21"/>
+<polygon fill="#1f5fa8" stroke="#1f5fa8" stroke-width="1.3" points="334.56,-376.95 335.54,-369.6 330.19,-374.73 334.56,-376.95"/>
+</a>
+</g>
+<text text-anchor="middle" x="311.63" y="-404.22" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#1f5fa8">+?</text>
+</g>
+
+<g id="e12" class="edge">
+<title>n6&#45;&gt;n1</title>
+<g id="a_e12"><a xlink:title="Total tobacco use to Nicotine dependence: 1 papers">
+<path fill="none" stroke="#1f5fa8" stroke-width="1.4" d="M228.81,-23.76C160.17,-31.58 142.83,-42.89 93.74,-96.55"/>
+<polygon fill="#1f5fa8" stroke="#1f5fa8" stroke-width="1.4" points="91.79,-95.05 88.89,-101.87 95.42,-98.35 91.79,-95.05"/>
+</a>
+</g>
+<text text-anchor="middle" x="140.21" y="-49.55" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#1f5fa8">+1</text>
+</g>
+
+<g id="h2" class="edge">
+<title>n7&#45;&gt;n4</title>
+<g id="a_h2"><a xlink:title="Hypothesized: no evidence in this review">
+<path fill="none" stroke="#1f5fa8" stroke-width="1.3" stroke-dasharray="5,2" d="M460.51,-410.13C433.08,-409.28 415.27,-400.3 376.41,-373.64"/>
+<polygon fill="#1f5fa8" stroke="#1f5fa8" stroke-width="1.3" points="377.67,-371.53 370.52,-369.57 374.89,-375.56 377.67,-371.53"/>
+</a>
+</g>
+<text text-anchor="middle" x="404.22" y="-399.53" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#1f5fa8">+?</text>
+</g>
+
+<g id="h4" class="edge">
+<title>n7&#45;&gt;n5</title>
+<g id="a_h4"><a xlink:title="Hypothesized: no evidence in this review">
+<path fill="none" stroke="#1f5fa8" stroke-width="1.3" stroke-dasharray="5,2" d="M491.06,-423.86C429.6,-462.79 410.4,-469.3 350.03,-459.86"/>
+<polygon fill="#1f5fa8" stroke="#1f5fa8" stroke-width="1.3" points="350.16,-457.4 342.86,-458.7 349.38,-462.23 350.16,-457.4"/>
+</a>
+</g>
+<text text-anchor="middle" x="412.02" y="-463.23" font-family="Helvetica,sans-Serif" font-size="11.00" fill="#1f5fa8">+?</text>
+</g>
+</g>
+</svg>
