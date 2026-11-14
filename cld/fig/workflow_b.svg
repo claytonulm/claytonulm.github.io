@@ -96,7 +96,7 @@
 <line x1="646" y1="88" x2="646" y2="222" stroke="#6E6E6E" stroke-width="1.5" stroke-linecap="round"/>
 <line x1="646" y1="150" x2="683.0" y2="150.0" stroke="#6E6E6E" stroke-width="1.5" stroke-linecap="round"/>
 <polygon points="690.00,150.00 683.00,145.66 683.00,154.34" fill="#6E6E6E"/>
-<text x="594" y="54" font-size="12.5" fill="#000000" font-weight="bold" text-anchor="middle">Checker agents</text>
+<text x="594" y="54" font-size="12.5" fill="#000000" font-weight="bold" text-anchor="middle">Reviewer agents</text>
 <circle cx="593" cy="177" r="1.6" fill="#757575"/>
 <circle cx="593" cy="186" r="1.6" fill="#757575"/>
 <circle cx="593" cy="195" r="1.6" fill="#757575"/>
